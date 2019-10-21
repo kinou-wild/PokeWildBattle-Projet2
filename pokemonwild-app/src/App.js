@@ -1,15 +1,14 @@
 import React from 'react';
 import './App.css';
-import Particle from './Particle';
-import Pokedex from './components/pokedex/Pokedex'
+import Router from './components/Router'
 
 class App extends React.Component {
 
   render() {
     return (
       <>
-        <Particle />
-          <Pokedex />
+            <Router/>
+      
       </>
     )
   }

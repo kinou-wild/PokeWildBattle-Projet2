@@ -1,9 +1,10 @@
 import React from 'react';
 import Particles from 'react-particles-js';
+import './Particle.css' 
 
 class Particle extends React.Component{
   
-    render(){
+    render(){ 
         return (
           <div> 
             <Particles params={{
