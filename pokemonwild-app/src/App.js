@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-
-function App() {
-  return (
-    <div>
-    </div>
-  );
-}
-
+import Particle from './components/Particle'
+class App extends React.Component{
+  
+    render(){
+        return (
+          <Particle />
+        )
+    }}
 export default App;
