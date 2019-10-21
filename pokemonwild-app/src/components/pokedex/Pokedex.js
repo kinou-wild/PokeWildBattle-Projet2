@@ -6,10 +6,9 @@ class Pokedex extends React.Component {
     render() {
         return (
             <>
-            
             </>
         )
-    
+
     }
 }
 

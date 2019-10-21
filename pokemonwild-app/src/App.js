@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Particle from './components/Particle';
+import Particle from './Particle';
+import Pokedex from './components/pokedex/Pokedex'
 
 class App extends React.Component {
 
@@ -8,6 +9,7 @@ class App extends React.Component {
     return (
       <>
         <Particle />
+          <Pokedex />
       </>
     )
   }
