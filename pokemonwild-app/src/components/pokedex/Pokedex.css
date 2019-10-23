@@ -3,6 +3,7 @@
     z-index:0;
 }
 
+
 .pokedexPage {
 
     display: flex;
@@ -10,5 +11,10 @@
     align-content: center;
     width: auto;
     height: auto;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 13px;
 
 }
+
+
+

@@ -11,9 +11,9 @@ const Pokelist = ({ card }) => {
                 <div className="center">
                     {card.map((x, y) =>
                         <div className="pokeCard" key={y}>
-                            <img className="imgsPos" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${y + 1}.png`} alt='' />
-                            <hr></hr>
-                            <p>{x.name}</p>
+                            <img className="pokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${y + 1}.png`} alt='' />
+                            <hr className="cardHr"></hr>
+                            <p className="pokeName">{x.name}</p>
                         </div>
                             )
                     }
