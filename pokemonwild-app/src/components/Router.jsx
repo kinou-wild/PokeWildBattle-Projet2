@@ -12,8 +12,8 @@ class Router extends Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/' component={Home} />
-                    <Route path='/pokemon/:id' component={Pokemon} />
-                    <Route exact path='/pokemons/' component={Pokemons} />
+                    <Route path='/pokemon/:id' component={Pokemon}/>
+                    <Route path='/pokemons/' component={Pokemons}/>
                 </Switch>
             </BrowserRouter>
         );
