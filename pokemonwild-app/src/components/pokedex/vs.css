@@ -1,34 +1,19 @@
-*{
+* {
     position: none !important;
-    
 }
 
-.pokeListDiv {
+.vSDiv {
 
     display: flex;
     justify-content: center;
     align-content: center;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    width: 100%;
-    height: 80vh;
-    overflow-y: scroll !important;
-    word-wrap: break-word;
+
 }
 
-::-webkit-scrollbar {
-     width: 0px;
-     height: 0px;
- }
-
-
 .center {
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 105vh;
-    margin: 10px;
 
 }
 
@@ -42,12 +27,9 @@ hr {
 
 
 .pokeCard {
-    
+
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 200px;
-    margin: 10px;
     border: 1px solid black;
     border-radius: 5px;
     text-transform: uppercase;
@@ -59,6 +41,26 @@ hr {
     text-align: center;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
+
+
 }
 
+.vsDiv{
+    height: 10px;
+}
+.vs{
+    margin-top: 80px;
+}
 
+button{
+    margin: auto;
+    
+
+}
+
+.buttonFight{
+    border:1px solid;
+
+
+
+}

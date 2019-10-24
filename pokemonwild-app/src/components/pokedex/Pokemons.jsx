@@ -13,14 +13,13 @@ class Pokemons extends React.Component {
     componentDidMount() {
         axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151')
             .then(res => {
-                this.setState({ results: res.data.results })
+                this.setState({results: res.data.results})
             })
     }
     
     render() {
         return (
-            <Pokelist  card={this.state.results} />
-
+            <Pokelist card={this.state.results}/>
         )
     }
 }
