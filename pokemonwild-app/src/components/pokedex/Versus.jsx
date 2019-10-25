@@ -14,9 +14,9 @@ class Versus extends React.Component {
             <div>
                 <div className="vsDiv">
                     <div className="center">
-                        {this.props.nameVs === false ? 
+                        {this.props.nameVs==false ? 
                         <div className="pokeCard">
-                            <img className="pokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.key + 1}.png`} alt="" />
+                            <img className="pokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.keyC + 1}.png`} alt="" />
                             <hr className="cardHr"></hr>
                             <p className="pokeName">{this.props.nameC}</p>
                         </div> : 
@@ -38,7 +38,7 @@ class Versus extends React.Component {
                         </div>
                     </div>
                     <div className='buttonFight'>
-                        <button>Let's fight</button>
+                        <button>LET'S FIGHT</button>
                     </div>
 
                 </div>

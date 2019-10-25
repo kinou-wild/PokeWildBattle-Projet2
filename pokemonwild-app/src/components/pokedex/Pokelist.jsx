@@ -37,7 +37,6 @@ class Pokelist extends React.Component {
                         </div>
                     )}
                 </div>
-                
             </div>
             <Versus nameVs={this.state.namePokemon} photoVs={this.state.keyPokemon} nameC={this.state.nameComputer} keyC={this.state.keyComputer}/>
         </div>
