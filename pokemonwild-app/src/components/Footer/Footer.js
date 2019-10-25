@@ -16,9 +16,7 @@ class Footer extends Component {
   render(){ 
     return ( 
       <div>
-        <button onClick={this.handleClick} >
-          Want more ?
-        </button>
+  
         <div className={this.state.clickMe? "clickMe" : "container"}>
           <footer className='footer'>
               <div className='divCard'>
@@ -35,6 +33,9 @@ class Footer extends Component {
               </div>  
           </footer>
         </div>
+        <button onClick={this.handleClick} >
+          Want more ?
+        </button>
       </div>
      );
   }

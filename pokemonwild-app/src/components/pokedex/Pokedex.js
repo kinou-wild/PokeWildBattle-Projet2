@@ -1,6 +1,7 @@
 import React from 'react';
 import './Pokedex.css';
 import Pokemons from './Pokemons'
+import Footer from '../Footer/Footer'
 
 class Pokedex extends React.Component {
 
