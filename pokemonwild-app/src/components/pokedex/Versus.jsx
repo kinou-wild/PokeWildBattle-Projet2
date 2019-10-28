@@ -10,8 +10,10 @@ class Versus extends React.Component {
     }
 
     render() {
+
         return (
             <div>
+
                 <div className="vsDiv">
                     <div className="center">
                         {this.props.nameVs==false ? 
@@ -42,6 +44,7 @@ class Versus extends React.Component {
                     </div>
 
                 </div>
+
             </div>
         )
     }

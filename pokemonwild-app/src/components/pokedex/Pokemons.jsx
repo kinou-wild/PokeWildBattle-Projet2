@@ -18,8 +18,11 @@ class Pokemons extends React.Component {
     }
     
     render() {
+
         return (
-            <Pokelist card={this.state.results}/>
+            <div>
+                <Pokelist card={this.state.results} />
+            </div>
         )
     }
 }
