@@ -8,7 +8,7 @@ import './PokeModal.css'
 const pokemonUrl = 'https://pokeapi.co/api/v2/pokemon'
 
 
-class Pokemon extends React.Component {
+class PokeModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,6 +33,9 @@ class Pokemon extends React.Component {
     }
 
     render() {
+
+        const randomMove = (Math.random() * ((this.state.pokemon.moves.length) - 1) + 1)
+
         if (!this.props.show) {
             return null
         }
@@ -47,14 +50,13 @@ class Pokemon extends React.Component {
                     <p>{this.props.nameModal}</p>
                     <p>Type :{`${this.state.pokemon.types.map(x => x.type.name)} `}</p>
                     <p>Height : {this.state.pokemon.height}</p>
-                    
-                    {this.state.pokemon.stats.map(x => 
-                        <p>{x.stat.name} {x.base_stat}</p>)}
-
                     <p>Weight : {this.state.pokemon.weight}</p>
+
+                    {this.state.pokemon.stats.map(x => 
+                        <p>{x.stat.name} {x.base_stat}</p>)}   
                 </div>
                 <div className="pokeAttack">
-                    <p>Moves : {`${this.state.pokemon.moves.map(x => x.move.name)} `}</p>
+                    <p>Moves : {`${this.state.pokemon.moves.slice(randomMove,(randomMove +4)).map(x => x.move.name)}`} </p>
                 </div>
                 <button className="toogle-button" onClick={this.onClose}>Close</button>
             </div>
@@ -66,11 +68,11 @@ class Pokemon extends React.Component {
     }
 }
 
-Pokemon.propTypes = {
+PokeModal.propTypes = {
     onClose: PropTypes.func.isRequired,
     show: PropTypes.bool.isRequired
 }
 
 
 
-export default Pokemon;
+export default PokeModal;

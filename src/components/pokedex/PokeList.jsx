@@ -1,13 +1,13 @@
 import React from 'react'
 import axios from 'axios'
-import "./Pokemons.css";
+import "./PokeList.css";
 import Versus from './Versus'
-import Pokemon from './Pokemon'
+import PokeModal from './PokeModal'
 
 
 const random = Math.floor(Math.random() * 151)
 
-class Pokemons extends React.Component {
+class PokeList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,7 +43,7 @@ class Pokemons extends React.Component {
              <div onLoad={() => this.setState({keyComputer: random})}>
             <div className="pokeListDiv">
              <div className="center"> 
-            <Pokemon keyModal={this.state.keyPokemon} onClose={this.showModal} show={this.state.show} />
+            <PokeModal keyModal={this.state.keyPokemon} onClose={this.showModal} show={this.state.show} />
 
                     {this.state.pokemons.results.map((x, y) =>
                         <div className="pokeCard" key={y} onClick={() => this.setState({ 
@@ -74,4 +74,4 @@ class Pokemons extends React.Component {
 }
 
 
-export default Pokemons;
+export default PokeList;
