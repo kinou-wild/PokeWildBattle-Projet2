@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './Home';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import HomePokedex from './HomePokedex';
+import Accueil from './accueil/Accueil';
 
 
 
@@ -9,10 +10,14 @@ class Router extends Component {
 
     render() {
         return (
-            
-            <BrowserRouter>
-                    <Route exact path='/' component={Home} />
-            </BrowserRouter>
+            <Switch> 
+                <BrowserRouter>
+                    <Route exact path='/' component={Accueil} />
+                    <Route exact path='/pokedex' component={HomePokedex} />
+                    
+                </BrowserRouter>
+            </Switch>
+    
         );
     }
 }
