@@ -10,11 +10,13 @@
     background-position: center 75%;
     background-image: url(http://media-s3-us-east-1.ceros.com/hype-beast/images/2018/07/13/a9a51bc0b8d626db493ab5f9a971b043/background-hero.png);
   }
+
   svg {
       width: 100%;
-      height: 80%;
+      height: 90%;
       visibility: visible;
       overflow: visible !important;
+      top: -40px;
     }
     
   .musicbar {
@@ -41,8 +43,6 @@
     margin-block-end: 0%;
   }
   
-   
-  
   .pokeball.pulsing
     .pokeball-circle{
       cursor: pointer ;
@@ -51,6 +51,7 @@
     .pokeball-circle:hover {
         fill: #DD9D9D !important;
       }
+
     .pokeball-circle-pulse{
       stroke: #00B753 ;
       transform-origin: 193.9px 470.5px ;
@@ -70,8 +71,7 @@
       }
   }
   
-  
-  
+
   
   @keyframes type {
       0% {
@@ -88,9 +88,12 @@
     animation-name: slidePoke;
     display: flex;
     position: relative;
-    top:105px;
-    
-  
+    top:150px;
+}
+
+img {
+    width: 100px;
+    height: 340px;
 }
   @keyframes slidePoke {
       from {
