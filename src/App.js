@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Router from './components/Router'
-import Footer from './components/Footer/Footer'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
 
@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <>
           <Router/>
-          <Footer/>
+
       </>
     )
   }
