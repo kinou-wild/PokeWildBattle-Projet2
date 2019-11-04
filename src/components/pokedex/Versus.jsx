@@ -1,6 +1,8 @@
 import React from 'react';
 import './Versus.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
+
 
 
 class Versus extends React.Component {
@@ -61,7 +63,8 @@ class Versus extends React.Component {
                         </div>
                     </div>
                     <div className='buttonFight'>
-                        <button>LET'S FIGHT</button>
+                        <Link to={`/fight/${this.props.photoVs + 1}/${this.state.random}`} test={'hihi'}><button>LET'S FIGHT</button></Link>
+
                     </div>
 
                 </div>
