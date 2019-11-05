@@ -3,13 +3,14 @@ import axios from 'axios'
 import "./Fight.css";
 
 
+
 function Fight(props) {
     const params = props.match.params;
 
 
     const [dataPokemonPerso, setDataPokemonPerso] = useState({
         stats: [],
-        sprites:[]
+        sprites: []
     });
 
     const [dataPokemonComputer, setDataPokemonComputer] = useState({
@@ -18,17 +19,17 @@ function Fight(props) {
     });
 
 
-    useEffect(()=>{
+    useEffect(() => {
         getPokemonPerso()
-    },[])
+    }, [])
 
     useEffect(() => {
         getPokemonComputer()
     }, [])
 
-    const getPokemonPerso = async()=>{
+    const getPokemonPerso = async () => {
         await axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idperso}`)
-        .then(res=>setDataPokemonPerso(res.data))
+            .then(res => setDataPokemonPerso(res.data))
     }
 
     const getPokemonComputer = async () => {
@@ -36,34 +37,36 @@ function Fight(props) {
             .then(res => setDataPokemonComputer(res.data))
     }
 
-    
-  
+
+
 
     return (
-        <div>
-            
-        <div>
-            <h1>Pokemon perso :</h1>
-            <p>{dataPokemonPerso.name}</p>
-            <img src={dataPokemonPerso.sprites.front_default} alt='front'/>
-            <img src={dataPokemonPerso.sprites.back_default} alt='back' />
+        <div className='fightPlace'>
+            <div className='divFight'>
+                <div className='computer'>
+                    <div className='statsComputer'>
+                        {dataPokemonComputer.stats.map((x, y) => <p key={y}>{`${x.stat.name} : ${x.base_stat}`}</p>)}
+                    </div>
+                    <div>
+                        <h1>{dataPokemonComputer.name}</h1>
+                        <img src={dataPokemonComputer.sprites.front_default} alt='image front' />
+                    </div>
+                </div>
 
-            {dataPokemonPerso.stats.map((x,y)=><p key={y}>{`${x.stat.name} : ${x.base_stat}`}</p>)}
-
+                <div className='perso'>
+                    <div>
+                        <h1>{dataPokemonPerso.name}</h1>
+                        <img src={dataPokemonPerso.sprites.back_default} alt='image back' />
+                    </div>
+                    <div className='statsPerso'>
+                        {dataPokemonPerso.stats.map((x, y) => <p key={y}>{`${x.stat.name} : ${x.base_stat} `}</p>)}
+                    </div>
+                </div>
+            </div>
+            <div className='textCombat'>traaaaaalala</div>
 
         </div>
-         <div>
-            <h1>Pokemon computer :</h1>
-            <p>{dataPokemonComputer.name}</p>
-            <img src={dataPokemonComputer.sprites.front_default} alt='front'/>
-            <img src={dataPokemonComputer.sprites.back_default} alt='back' />
-
-            {dataPokemonComputer.stats.map((x,y)=><p key={y}>{`${x.stat.name} : ${x.base_stat}`}</p>)}
-
-
-        </div>
-        </div>
-);
-    }
+    );
+}
 
 export default Fight;
