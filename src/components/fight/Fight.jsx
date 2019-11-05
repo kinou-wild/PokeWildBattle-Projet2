@@ -37,8 +37,22 @@ function Fight(props) {
             .then(res => setDataPokemonComputer(res.data))
     }
 
+    const pokemonPersoArrayStats = [dataPokemonPerso.stats.map(x => x.base_stat)]
+    const pokemonComputerArrayStats = [dataPokemonComputer.stats.map(x => x.base_stat)]
+    const pokemonPersoResults = (pokemonPersoArrayStats[0][0] + pokemonPersoArrayStats[0][1] + pokemonPersoArrayStats[0][2] + pokemonPersoArrayStats[0][3]+ pokemonPersoArrayStats[0][4] + pokemonPersoArrayStats[0][5])
+    const pokemonComputerResults = (pokemonComputerArrayStats[0][0] + pokemonComputerArrayStats[0][1] + pokemonComputerArrayStats[0][2] + pokemonComputerArrayStats[0][3] + pokemonComputerArrayStats[0][4] + pokemonComputerArrayStats[0][5])
 
-
+    const combatAlgorithm = () => {
+        if (pokemonPersoResults > pokemonComputerResults) {
+            return (`Tu as gagner avec ${dataPokemonPerso.name}, ${dataPokemonComputer.name} a perdu ! `)
+        }
+        else if (pokemonPersoResults < pokemonComputerResults) {
+            return(`${dataPokemonComputer.name} a gagné ! Tu as perdu avec ${dataPokemonPerso.name} =( `)
+        }
+        else {
+            return ("Egalité ! =o")
+        }
+    }
 
     return (
         <div className='fightPlace'>
@@ -63,7 +77,8 @@ function Fight(props) {
                     </div>
                 </div>
             </div>
-            <div className='textCombat'>traaaaaalala</div>
+
+            <div className='textCombat'>Welcome into Pokemon Battle ! {dataPokemonPerso.name} VS {dataPokemonComputer.name}<br></br>{combatAlgorithm()}</div>
 
         </div>
     );
