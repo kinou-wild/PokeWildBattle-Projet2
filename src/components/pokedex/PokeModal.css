@@ -1,0 +1,19 @@
+.pokeModal {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-evenly !important;
+    text-align: center !important;
+    background: white !important;
+    border: 1px solid #ccc !important;
+    transition: 1.1s ease-out !important;
+    box-shadow: -2rem 2rem 2rem rgba(0, 0, 0, 0.2) !important;
+    filter: blur(0) !important;
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border: 1px solid black !important;
+    border-radius: 5px !important;
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 13px !important;
+}
+
