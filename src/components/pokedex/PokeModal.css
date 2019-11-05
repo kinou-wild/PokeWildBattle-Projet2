@@ -35,3 +35,15 @@
     flex-direction: column !important;
     margin-top: 3% !important;
 }
+
+.pokeModalSprites{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-evenly !important;
+    width: 100% !important;
+}
+
+.pokeImg {
+    width: auto !important;
+    height: auto !important;
+}
