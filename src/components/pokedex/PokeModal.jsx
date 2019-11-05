@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import './PokeModal.css'
-import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 
 
 
@@ -17,7 +17,7 @@ class PokeModal extends React.Component {
                 moves: [],
                 stats: []
             },
-            modal : this.props.stateModal
+            modal: this.props.stateModal
         }
     }
 
@@ -31,7 +31,7 @@ class PokeModal extends React.Component {
             .catch(err => console.log(err))
     }
 
-    
+
 
     render() {
 
@@ -42,21 +42,32 @@ class PokeModal extends React.Component {
 
             <div>
                 <Modal isOpen={this.props.stateModal} toggle={this.props.changeStateModal} className="pokeModal">
-                    <ModalHeader>
-                        <p>{this.props.namePokemon}</p>
-                        <img className="pokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.keyModal + 1}.png`} alt="front sprite on card" />
-                        <img className="pokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${this.props.keyModal + 1}.png`} alt="front sprite on card" />
+                    <ModalHeader className="pokeModalHeader">
+                        <div className="pokeModalTitle">
+                            <p>{this.props.namePokemon}</p>
+                        </div>
+                        <div className="pokeModalSprites">
+                            <img className="pokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.keyModal + 1}.png`} alt="front sprite on card" />
+                            <img className="pokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${this.props.keyModal + 1}.png`} alt="front sprite on card" />
+                        </div>
+
                     </ModalHeader>
-                    <ModalBody>
-                        <p>Type :{`${this.state.pokemon.types.map(x => x.type.name)} `}</p>
-                        <p>Height : {this.state.pokemon.height}</p>
-                        <p>Weight : {this.state.pokemon.weight}</p>
+                    <ModalBody className="pokeModalBody">
+                        <div>
+                            <p>Type : {`${this.state.pokemon.types.map(x => x.type.name)} `}</p>
+                            <p>Height : {this.state.pokemon.height}</p>
+                            <p>Weight : {this.state.pokemon.weight}</p>
+                        </div>
+
+                        <span className="pokeModalSpan">Stats</span>
                         {this.state.pokemon.stats.map(x =>
                             <p>{x.stat.name} {x.base_stat}</p>)
                         }
-                        <p>Moves : {`${this.state.pokemon.moves.slice(randomMove, (randomMove + 4)).map(x => x.move.name)}`} </p>
+
+                        <span className="pokeModalSpan">Moves</span>
+
+                        <p> {`${this.state.pokemon.moves.slice(randomMove, (randomMove + 4)).map(x => x.move.name)}`} </p>
                     </ModalBody>
-                    <Button color="secondary" onClick={this.props.changeStateModal}>Cancel</Button>
                 </Modal>
             </div >
 

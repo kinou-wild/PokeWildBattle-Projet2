@@ -16,8 +16,7 @@ class Router extends Component {
                 <BrowserRouter>
                     <Route exact path='/' component={Accueil} />
                     <Route exact path='/pokedex' component={HomePokedex} />
-                    <Route path='/fight/:idperso/:idcomputer' component={Fight} />
-                    
+                    <Route path='/fight/:idperso/:idcomputer' component={Fight} />     
                 </BrowserRouter>
             </Switch>
         );
