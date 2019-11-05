@@ -35,7 +35,7 @@ class PokeList extends React.Component {
 
     
     componentDidMount() {
-        axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151')
+            axios.get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151')
             .then(res => {
                 this.setState({ pokemons: res.data })
             })
@@ -46,7 +46,7 @@ class PokeList extends React.Component {
         return (
              <div onLoad={() => this.setState({keyComputer: random})}>
              <p>{this.state.research}</p>
-            <div className='Search'>
+            <div className='Search' style={{zIndex:100}}>
 <MyInput suggestions={this.state.pokemons.results.map(x=>x.name)} handler = {this.setResearch}></MyInput>
 </div>
             <div className="pokeListDiv">
