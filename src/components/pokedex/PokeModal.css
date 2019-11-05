@@ -1,7 +1,7 @@
 .pokeModal {
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-evenly !important;
+    justify-items: space-around !important;
     text-align: center !important;
     background: white !important;
     border: 1px solid #ccc !important;
@@ -17,3 +17,21 @@
     font-size: 13px !important;
 }
 
+.pokeModalHeader {
+    display:flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.pokeModalSpan {
+    font-size: 17px !important;
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+
+}
+
+.pokeModalBody {
+    display:flex !important;
+    flex-direction: column !important;
+    margin-top: 3% !important;
+}
