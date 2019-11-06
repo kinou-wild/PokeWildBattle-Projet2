@@ -32,6 +32,7 @@ function Fight(props) {
             .then(res => setDataPokemonPerso(res.data))
     }
 
+
     const getPokemonComputer = async () => {
         await axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idcomputer}`)
             .then(res => setDataPokemonComputer(res.data))
@@ -77,9 +78,7 @@ function Fight(props) {
                     </div>
                 </div>
             </div>
-
             <div className='textCombat'>Welcome into Pokemon Battle ! {dataPokemonPerso.name} VS {dataPokemonComputer.name}<br></br>{combatAlgorithm()}</div>
-
         </div>
     );
 }
