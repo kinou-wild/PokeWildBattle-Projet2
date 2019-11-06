@@ -19,22 +19,39 @@ class PokeModal extends React.Component {
             },
             modal: this.props.stateModal
         }
+
     }
 
 
-
     UNSAFE_componentWillReceiveProps() {
+
         axios.get(`${pokemonUrl}/${this.props.keyModal + 1}`)
             .then(response => {
                 this.setState({ pokemon: response.data })
             })
-            .catch(err => console.log(err))
-    }
+            .catch(err => console.log(err));
+        }
+//     movesDisplayer = () => {
+//         const randomized = () => Math.floor(Math.random()*this.state.pokemon.moves.length)
+//         const moveOne = randomized();
+//         const moveTwo = randomized();
+//         const moveThree = randomized();
+//         const moveFour = randomized();
+//         if (this.state.pokemon.moves[5]!==undefined) {
+// ;
+     
+//         return(
+//             <>
+//         <p> {`${this.state.pokemon.moves[moveOne].move.name}`} </p>
+//         <p> {`${this.state.pokemon.moves[moveTwo].move.name}`} </p>
+//         <p> {`${this.state.pokemon.moves[moveThree].move.name}`} </p>
+//         <p> {`${this.state.pokemon.moves[moveFour].move.name}`} </p>
+//         </>
 
+//         )}}
 
 
     render() {
-        const randomized = () => Math.floor(Math.random()*this.state.pokemon.moves.length)
         const randomMove = (Math.random() * ((this.state.pokemon.moves.length) - 1) + 1)
 
 
@@ -64,12 +81,12 @@ class PokeModal extends React.Component {
                             <p>{x.stat.name} {x.base_stat}</p>)
                         }
 
-                        <span className="pokeModalSpan">Moves</span>
-
-                        <p> {`${this.state.pokemon.moves[randomized()]}`} </p>
+                        <span className="pokeModalSpan">Moves </span>
+                        {this.movesDisplayer()}
                     </ModalBody>
                 </Modal>
-            </div >
+
+            </div>
 
 
 
