@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import "./fight2.css";
-
+import {moveOne, moveTwo, moveThree, moveFour} from '../pokedex/PokeModal'
+console.log(moveOne)
+console.log(moveTwo)
+console.log(moveThree)
+console.log(moveFour)
 
 
 function Fight2(props) {

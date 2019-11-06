@@ -6,7 +6,15 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 
 
 const pokemonUrl = 'https://pokeapi.co/api/v2/pokemon'
-
+const randomized = () => Math.floor(Math.random() * 250)
+const moveOne = randomized();
+const moveTwo = randomized();
+const moveThree = randomized();
+const moveFour = randomized();
+console.log(moveOne)
+console.log(moveTwo)
+console.log(moveThree)
+console.log(moveFour)
 
 class PokeModal extends React.Component {
     constructor(props) {
@@ -30,25 +38,20 @@ class PokeModal extends React.Component {
                 this.setState({ pokemon: response.data })
             })
             .catch(err => console.log(err));
-        }
-//     movesDisplayer = () => {
-//         const randomized = () => Math.floor(Math.random()*this.state.pokemon.moves.length)
-//         const moveOne = randomized();
-//         const moveTwo = randomized();
-//         const moveThree = randomized();
-//         const moveFour = randomized();
-//         if (this.state.pokemon.moves[5]!==undefined) {
-// ;
-     
-//         return(
-//             <>
-//         <p> {`${this.state.pokemon.moves[moveOne].move.name}`} </p>
-//         <p> {`${this.state.pokemon.moves[moveTwo].move.name}`} </p>
-//         <p> {`${this.state.pokemon.moves[moveThree].move.name}`} </p>
-//         <p> {`${this.state.pokemon.moves[moveFour].move.name}`} </p>
-//         </>
+    }
+        movesDisplayer = () => {
 
-//         )}}
+            if (this.state.pokemon.moves[1]!==undefined) {
+
+            return(
+                <>
+            <p> {`${this.state.pokemon.moves[moveOne%(this.state.pokemon.moves.length)].move.name}`} </p>
+            <p> {`${this.state.pokemon.moves[moveTwo%(this.state.pokemon.moves.length)].move.name}`} </p>
+            <p> {`${this.state.pokemon.moves[moveThree%(this.state.pokemon.moves.length)].move.name}`} </p>
+            <p> {`${this.state.pokemon.moves[moveFour%(this.state.pokemon.moves.length)].move.name}`} </p>
+            </>
+
+            )}}
 
 
     render() {
@@ -93,6 +96,5 @@ class PokeModal extends React.Component {
         );
     }
 }
-
-
+export {moveOne, moveTwo, moveThree, moveFour }
 export default PokeModal;
