@@ -1,0 +1,54 @@
+.fightPlace {
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    border-radius: 3px;
+    background: url('http://media-s3-us-east-1.ceros.com/hype-beast/images/2018/07/13/a9a51bc0b8d626db493ab5f9a971b043/background-hero.png') no-repeat center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+
+.divFight {
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+.textCombat {
+    width: 100%;
+    height: 15vh;
+    border: 8px solid;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+}
+
+.perso {
+    display: flex;
+    font-size: 1.5em;
+    position: absolute;
+    margin-top: 25%;
+    margin-left: 1%;
+}
+
+
+.computer {
+    display: flex;
+    font-size: 1.5em;
+    position: absolute;
+    margin-top: 17%;
+    margin-left: 60%;
+
+
+}
+
+img {
+    width: 120%;
+    height: 60%;
+}

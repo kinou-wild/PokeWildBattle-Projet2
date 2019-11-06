@@ -34,7 +34,7 @@ class PokeModal extends React.Component {
 
 
     render() {
-
+        const randomized = () => Math.floor(Math.random()*this.state.pokemon.moves.length)
         const randomMove = (Math.random() * ((this.state.pokemon.moves.length) - 1) + 1)
 
 
@@ -66,7 +66,7 @@ class PokeModal extends React.Component {
 
                         <span className="pokeModalSpan">Moves</span>
 
-                        <p> {`${this.state.pokemon.moves.slice(randomMove, (randomMove + 4)).map(x => x.move.name)}`} </p>
+                        <p> {`${this.state.pokemon.moves[randomized()]}`} </p>
                     </ModalBody>
                 </Modal>
             </div >

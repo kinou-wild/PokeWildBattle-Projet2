@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePokedex from './HomePokedex';
 import Accueil from './accueil/Accueil';
 import Fight from './fight/Fight'
+import Fight2 from './fight/Fight2'
+
 
 
 
@@ -16,7 +18,8 @@ class Router extends Component {
                 <BrowserRouter>
                     <Route exact path='/' component={Accueil} />
                     <Route exact path='/pokedex' component={HomePokedex} />
-                    <Route path='/fight/:idperso/:idcomputer' component={Fight} />     
+                    <Route path='/fight/:idperso/:idcomputer' component={Fight} />    
+                    <Route path='/fight2/:idperso/:idcomputer' component={Fight2} />      
                 </BrowserRouter>
             </Switch>
         );
