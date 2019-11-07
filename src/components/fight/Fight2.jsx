@@ -97,9 +97,9 @@ function Fight2(props) {
         const url3= dataPokemonPerso.moves[moveThree%dataPokemonPerso.moves.length].move.url
         const url4= dataPokemonPerso.moves[moveFour%dataPokemonPerso.moves.length].move.url
 console.log(`URL 1 = ${url1}`)
-console.log(`URL 1 = ${url1}`)
-console.log(`URL 1 = ${url1}`)
-console.log(`URL 1 = ${url1}`)
+console.log(`URL 2 = ${url2}`)
+console.log(`URL 3 = ${url3}`)
+console.log(`URL 4 = ${url4}`)
 
 
         getAttPerso1(url1)
