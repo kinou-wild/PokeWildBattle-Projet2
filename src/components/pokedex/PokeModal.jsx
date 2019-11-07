@@ -41,7 +41,7 @@ class PokeModal extends React.Component {
     }
         movesDisplayer = () => {
 
-            if (this.state.pokemon.moves[1]!=undefined) {
+            if (this.state.pokemon.moves[1]!==undefined) {
 
             return(
                 <>

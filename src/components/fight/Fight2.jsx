@@ -7,11 +7,11 @@ import { moveOne, moveTwo, moveThree, moveFour } from '../pokedex/PokeModal'
 // console.log(moveThree)
 // console.log(moveFour)
 
-
 function Fight2(props) {
     const params = props.match.params;
 
 
+    const [hpComputer, setHpComputer] = useState()
     const [dataPokemonPerso, setDataPokemonPerso] = useState({
         stats: [{}],
         sprites: [],
@@ -30,6 +30,7 @@ function Fight2(props) {
 
     useEffect(() => {
         getPokemonPerso()
+
     }, [])
 
     useEffect(() => {
@@ -43,57 +44,70 @@ function Fight2(props) {
 
     const getPokemonComputer = () => {
          axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idcomputer}`)
-            .then(res => setDataPokemonComputer(res.data))
+            .then(res =>{ setDataPokemonComputer(res.data)
+            setHpComputer(res.data.stats[5].base_stat)})
+         
     }
+
 
     // ////////////////////////////API attaques pokemon perso////////
     const [DataAttPerso1, setDataAttPerso1] = useState({
         power: []
     })
-
-    const getAttPerso1 = async () => {
-        await axios.get(`https://pokeapi.co/api/v2/move/${moveOne}`)
-            .then(res => setDataAttPerso1(res.data))
-    }
-    useEffect(() => {
-        getAttPerso1()
-    }, [])
-
     const [DataAttPerso2, setDataAttPerso2] = useState({
         power: []
     })
-
-    const getAttPerso2 = async () => {
-        await axios.get(`https://pokeapi.co/api/v2/move/${moveTwo}`)
-            .then(res => setDataAttPerso2(res.data))
-    }
-    useEffect(() => {
-        getAttPerso2()
-    }, [])
-
     const [DataAttPerso3, setDataAttPerso3] = useState({
         power: []
     })
-
-    const getAttPerso3 = async () => {
-        await axios.get(`https://pokeapi.co/api/v2/move/${moveThree}`)
-            .then(res => setDataAttPerso3(res.data))
-    }
-    useEffect(() => {
-        getAttPerso3()
-    }, [])
-
     const [DataAttPerso4, setDataAttPerso4] = useState({
         power: []
     })
+    const getAttPerso1 = async (url) => {
+        await axios.get(url)
+            .then(res => setDataAttPerso1(res.data))
+    }
 
-    const getAttPerso4 = async () => {
-        await axios.get(`https://pokeapi.co/api/v2/move/${moveFour}`)
+
+    const getAttPerso2 = async (url) => {
+        await axios.get(url)
+            .then(res => setDataAttPerso2(res.data))
+    }
+
+
+    const getAttPerso3 = async (url) => {
+        await axios.get(url)
+            .then(res => setDataAttPerso3(res.data))
+    }
+
+
+
+
+    const getAttPerso4 = async (url) => {
+        await axios.get(url)
             .then(res => setDataAttPerso4(res.data))
     }
+
+
+
+
     useEffect(() => {
-        getAttPerso4()
-    }, [])
+        const url1= dataPokemonPerso.moves[moveOne%dataPokemonPerso.moves.length].move.url
+        const url2= dataPokemonPerso.moves[moveTwo%dataPokemonPerso.moves.length].move.url
+        const url3= dataPokemonPerso.moves[moveThree%dataPokemonPerso.moves.length].move.url
+        const url4= dataPokemonPerso.moves[moveFour%dataPokemonPerso.moves.length].move.url
+console.log(`URL 1 = ${url1}`)
+console.log(`URL 1 = ${url1}`)
+console.log(`URL 1 = ${url1}`)
+console.log(`URL 1 = ${url1}`)
+
+
+        getAttPerso1(url1)
+        getAttPerso2(url2)
+        getAttPerso3(url3)
+        getAttPerso4(url4)
+    }, [dataPokemonPerso])
+
 
 
 
@@ -101,7 +115,19 @@ function Fight2(props) {
 
     const pokemonPersoArrayStats = [dataPokemonPerso.stats.map(x => x.base_stat)]
     const pokemonComputerArrayStats = [dataPokemonComputer.stats.map(x => x.base_stat)]
+
     //////////////////////////Algo perso/////////////////////////
+
+        /////////////////////////////////////////////////////////
+
+    //le state qui contient les hp du computeur que l'on va venir diminuer 
+
+
+console.log(pokemonComputerArrayStats[0][5])
+console.log(hpComputer)
+
+
+    /////////////////////
     const algoPersoAtt1 = () => {
         const level = (2 * 20 / 5) + 2
         const power = DataAttPerso1.power
@@ -136,26 +162,18 @@ function Fight2(props) {
         const def = pokemonPersoArrayStats[0][3]
         const att = pokemonPersoArrayStats[0][4]
         const random = Math.random() * (1 - 0.85) + 0.85
-        const finish4 = (((level * power * (att / def)) / 50) + 2) * random
-        return finish4
+        const finish4 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
+        console.log(finish4)
+        setHpComputer(hpComputer- finish4)
     }
-    console.log(algoPersoAtt4())
-
-    /////////////////////////////////////////////////////////
-
-    //le state qui contient les hp du computeur que l'on va venir diminuer 
+    console.log(hpComputer)
 
 
-    const [hpComputer, setHpComputer] = useState(pokemonComputerArrayStats[0][5] == undefined ? '' : pokemonComputerArrayStats[0][5])
-
-    { console.log(hpComputer) }
-
-
-    /////////////////////
     return (
 
         <div className='fightPlace'>
-        
+        <button onClick={() => algoPersoAtt4()}>aaaaa</button>
+        {hpComputer}
         
             <div className='divFight'>
                 <div className='computer'>
@@ -164,7 +182,7 @@ function Fight2(props) {
                     </div>
                     <div>
                         <h1>{dataPokemonComputer.name}</h1>
-                        <p>HP :{pokemonComputerArrayStats[0][5]}</p>
+                        <p>HP :{hpComputer}</p>
                         <img src={dataPokemonComputer.sprites.front_default} alt='front' />
                     </div>
                 </div>
