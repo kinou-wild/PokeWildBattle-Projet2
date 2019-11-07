@@ -54,7 +54,6 @@ class PokeModal extends React.Component {
             )}}
 
     render() {
-        // const randomMove = (Math.random() * ((this.state.pokemon.moves.length) - 1) + 1)
 
 
         return (
