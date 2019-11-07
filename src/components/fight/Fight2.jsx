@@ -169,6 +169,14 @@ console.log(hpComputer)
     console.log(hpComputer)
 
 
+    const test = Number(pokemonComputerArrayStats[0][5])
+
+    const [hpComputer, setHpComputer] = useState(test)
+
+    { console.log(hpComputer) }
+
+
+    /////////////////////
     return (
 
         <div className='fightPlace'>

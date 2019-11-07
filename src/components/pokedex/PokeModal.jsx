@@ -27,7 +27,6 @@ class PokeModal extends React.Component {
             },
             modal: this.props.stateModal
         }
-
     }
 
 
@@ -78,7 +77,7 @@ class PokeModal extends React.Component {
                             <p>Height : {this.state.pokemon.height}</p>
                             <p>Weight : {this.state.pokemon.weight}</p>
                         </div>
-
+            
                         <span className="pokeModalSpan">Stats</span>
                         {this.state.pokemon.stats.map(x =>
                             <p>{x.stat.name} {x.base_stat}</p>)
