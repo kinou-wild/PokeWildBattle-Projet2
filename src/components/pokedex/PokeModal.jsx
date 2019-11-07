@@ -41,7 +41,7 @@ class PokeModal extends React.Component {
     }
         movesDisplayer = () => {
 
-            if (this.state.pokemon.moves[1]!==undefined) {
+            if (this.state.pokemon.moves[1]!=undefined) {
 
             return(
                 <>
@@ -53,14 +53,14 @@ class PokeModal extends React.Component {
 
             )}}
 
-
     render() {
-        const randomMove = (Math.random() * ((this.state.pokemon.moves.length) - 1) + 1)
+        // const randomMove = (Math.random() * ((this.state.pokemon.moves.length) - 1) + 1)
 
 
         return (
 
             <div>
+
                 <Modal isOpen={this.props.stateModal} toggle={this.props.changeStateModal} className="pokeModal">
                     <ModalHeader className="pokeModalHeader">
                         <div className="pokeModalTitle">

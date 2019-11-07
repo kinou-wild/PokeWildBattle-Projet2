@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import "./fight2.css";
-import {moveOne, moveTwo, moveThree, moveFour} from '../pokedex/PokeModal'
-console.log(moveOne)
-console.log(moveTwo)
-console.log(moveThree)
-console.log(moveFour)
+import { moveOne, moveTwo, moveThree, moveFour } from '../pokedex/PokeModal'
+// console.log(moveOne)
+// console.log(moveTwo)
+// console.log(moveThree)
+// console.log(moveFour)
 
 
 function Fight2(props) {
@@ -13,15 +13,20 @@ function Fight2(props) {
 
 
     const [dataPokemonPerso, setDataPokemonPerso] = useState({
-        stats: [],
-        sprites: []
+        stats: [{}],
+        sprites: [],
+        moves: [{
+            move: {}
+        }]
     });
 
     const [dataPokemonComputer, setDataPokemonComputer] = useState({
         stats: [],
-        sprites: []
+        sprites: [],
+        moves: []
     });
 
+    
 
     useEffect(() => {
         getPokemonPerso()
@@ -31,33 +36,135 @@ function Fight2(props) {
         getPokemonComputer()
     }, [])
 
-    const getPokemonPerso = async () => {
-        await axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idperso}`)
+    const getPokemonPerso =  () => {
+         axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idperso}`)
             .then(res => setDataPokemonPerso(res.data))
-        console.log(dataPokemonPerso)
     }
 
-    const getPokemonComputer = async () => {
-        await axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idcomputer}`)
+    const getPokemonComputer = () => {
+         axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idcomputer}`)
             .then(res => setDataPokemonComputer(res.data))
-        console.log(dataPokemonComputer)
     }
+
+    // ////////////////////////////API attaques pokemon perso////////
+    const [DataAttPerso1, setDataAttPerso1] = useState({
+        power: []
+    })
+
+    const getAttPerso1 = async () => {
+        await axios.get(`https://pokeapi.co/api/v2/move/${moveOne}`)
+            .then(res => setDataAttPerso1(res.data))
+    }
+    useEffect(() => {
+        getAttPerso1()
+    }, [])
+
+    const [DataAttPerso2, setDataAttPerso2] = useState({
+        power: []
+    })
+
+    const getAttPerso2 = async () => {
+        await axios.get(`https://pokeapi.co/api/v2/move/${moveTwo}`)
+            .then(res => setDataAttPerso2(res.data))
+    }
+    useEffect(() => {
+        getAttPerso2()
+    }, [])
+
+    const [DataAttPerso3, setDataAttPerso3] = useState({
+        power: []
+    })
+
+    const getAttPerso3 = async () => {
+        await axios.get(`https://pokeapi.co/api/v2/move/${moveThree}`)
+            .then(res => setDataAttPerso3(res.data))
+    }
+    useEffect(() => {
+        getAttPerso3()
+    }, [])
+
+    const [DataAttPerso4, setDataAttPerso4] = useState({
+        power: []
+    })
+
+    const getAttPerso4 = async () => {
+        await axios.get(`https://pokeapi.co/api/v2/move/${moveFour}`)
+            .then(res => setDataAttPerso4(res.data))
+    }
+    useEffect(() => {
+        getAttPerso4()
+    }, [])
+
+
+
+    ////////////////////////////////////
 
     const pokemonPersoArrayStats = [dataPokemonPerso.stats.map(x => x.base_stat)]
     const pokemonComputerArrayStats = [dataPokemonComputer.stats.map(x => x.base_stat)]
-    const pokemonPersoResults = (pokemonPersoArrayStats[0][0] + pokemonPersoArrayStats[0][1] + pokemonPersoArrayStats[0][2] + pokemonPersoArrayStats[0][3] + pokemonPersoArrayStats[0][4] + pokemonPersoArrayStats[0][5])
-    const pokemonComputerResults = (pokemonComputerArrayStats[0][0] + pokemonComputerArrayStats[0][1] + pokemonComputerArrayStats[0][2] + pokemonComputerArrayStats[0][3] + pokemonComputerArrayStats[0][4] + pokemonComputerArrayStats[0][5])
+    //////////////////////////Algo perso/////////////////////////
+    const algoPersoAtt1 = () => {
+        const level = (2 * 20 / 5) + 2
+        const power = DataAttPerso1.power
+        const def = pokemonPersoArrayStats[0][3]
+        const att = pokemonPersoArrayStats[0][4]
+        const random = Math.random() * (1 - 0.85) + 0.85
+        const finish1 = (((level * power * (att / def)) / 50) + 2) * random
+        return finish1
+    }
+    const algoPersoAtt2 = () => {
+        const level = (2 * 20 / 5) + 2
+        const power = DataAttPerso2.power
+        const def = pokemonPersoArrayStats[0][3]
+        const att = pokemonPersoArrayStats[0][4]
+        const random = Math.random() * (1 - 0.85) + 0.85
+        const finish2 = (((level * power * (att / def)) / 50) + 2) * random
+        return finish2
+    }
+
+    const algoPersoAtt3 = () => {
+        const level = (2 * 20 / 5) + 2
+        const power = DataAttPerso3.power
+        const def = pokemonPersoArrayStats[0][3]
+        const att = pokemonPersoArrayStats[0][4]
+        const random = Math.random() * (1 - 0.85) + 0.85
+        const finish3 = (((level * power * (att / def)) / 50) + 2) * random
+        return finish3
+    }
+    const algoPersoAtt4 = () => {
+        const level = (2 * 20 / 5) + 2
+        const power = DataAttPerso4.power
+        const def = pokemonPersoArrayStats[0][3]
+        const att = pokemonPersoArrayStats[0][4]
+        const random = Math.random() * (1 - 0.85) + 0.85
+        const finish4 = (((level * power * (att / def)) / 50) + 2) * random
+        return finish4
+    }
+    console.log(algoPersoAtt4())
+
+    /////////////////////////////////////////////////////////
+
+    //le state qui contient les hp du computeur que l'on va venir diminuer 
 
 
+    const [hpComputer, setHpComputer] = useState(pokemonComputerArrayStats[0][5] == undefined ? '' : pokemonComputerArrayStats[0][5])
+
+    { console.log(hpComputer) }
+
+
+    /////////////////////
     return (
+
         <div className='fightPlace'>
+        
+        
             <div className='divFight'>
                 <div className='computer'>
                     <div className='statsComputer'>
-                        {dataPokemonComputer.stats.map((x, y) => <p key={y}>{`${x.stat.name} : ${x.base_stat}`}</p>)}
+
                     </div>
                     <div>
                         <h1>{dataPokemonComputer.name}</h1>
+                        <p>HP :{pokemonComputerArrayStats[0][5]}</p>
                         <img src={dataPokemonComputer.sprites.front_default} alt='front' />
                     </div>
                 </div>
@@ -65,10 +172,18 @@ function Fight2(props) {
                 <div className='perso'>
                     <div>
                         <h1>{dataPokemonPerso.name}</h1>
+                        <p>HP :{pokemonPersoArrayStats[0][5]}</p>
+
                         <img src={dataPokemonPerso.sprites.back_default} alt='back' />
                     </div>
                     <div className='statsPerso'>
-                        {dataPokemonPerso.stats.map((x, y) => <p key={y}>{`${x.stat.name} : ${x.base_stat} `}</p>)}
+                        <p>{DataAttPerso1.name}</p>
+                        <p>{DataAttPerso2.name}</p>
+                        <p>{DataAttPerso3.name}</p>
+                        <p>{DataAttPerso4.name}</p>
+
+
+
                     </div>
                 </div>
             </div>
@@ -77,6 +192,7 @@ function Fight2(props) {
 
         </div>
     );
+
 }
 
 export default Fight2;
