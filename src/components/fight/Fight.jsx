@@ -304,27 +304,24 @@ const Fight = (props) => {
 
     const turnPerTurn1 = () => {
         algoPersoAtt1()
-        setInterval(2000)
-        randomEnnemyAttack()
+        setTimeout(randomEnnemyAttack(), 2000)
     }
 
     const turnPerTurn2 = () => {
         algoPersoAtt2()
-        setInterval(2000)
-        randomEnnemyAttack()
+        setTimeout(randomEnnemyAttack(), 2000)
+        
     }
 
     const turnPerTurn3 = () => {
         algoPersoAtt3()
-        setInterval(2000)
-        randomEnnemyAttack()
+        setTimeout(randomEnnemyAttack(), 2000)
     }
 
 
     const turnPerTurn4 = () => {
         algoPersoAtt4()
-        setInterval(2000)
-        randomEnnemyAttack()
+        setTimeout(randomEnnemyAttack(), 2000)
     }
 
 
