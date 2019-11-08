@@ -5,8 +5,17 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 
 
 
-const pokemonUrl = 'https://pokeapi.co/api/v2/pokemon'
 
+const pokemonUrl = 'https://pokeapi.co/api/v2/pokemon'
+const randomized = () => Math.floor(Math.random() * 250)
+const moveOne = randomized();
+const moveTwo = randomized();
+const moveThree = randomized();
+const moveFour = randomized();
+console.log(moveOne)
+console.log(moveTwo)
+console.log(moveThree)
+console.log(moveFour)
 
 class PokeModal extends React.Component {
     constructor(props) {
@@ -31,7 +40,20 @@ class PokeModal extends React.Component {
             .catch(err => console.log(err))
     }
 
+    movesDisplayer = () => {
 
+        if (this.state.pokemon.moves[1] !== undefined) {
+
+            return (
+                <>
+                    <p> {`${this.state.pokemon.moves[moveOne % (this.state.pokemon.moves.length)].move.name}`} </p>
+                    <p> {`${this.state.pokemon.moves[moveTwo % (this.state.pokemon.moves.length)].move.name}`} </p>
+                    <p> {`${this.state.pokemon.moves[moveThree % (this.state.pokemon.moves.length)].move.name}`} </p>
+                    <p> {`${this.state.pokemon.moves[moveFour % (this.state.pokemon.moves.length)].move.name}`} </p>
+                </>
+            )
+        }
+    }
 
     render() {
 
@@ -66,7 +88,8 @@ class PokeModal extends React.Component {
 
                         <span className="pokeModalSpan">Moves</span>
 
-                        <p> {`${this.state.pokemon.moves.slice(randomMove, (randomMove + 4)).map(x => x.move.name)}`} </p>
+                        {this.movesDisplayer()}
+
                     </ModalBody>
                 </Modal>
             </div >
@@ -77,5 +100,5 @@ class PokeModal extends React.Component {
     }
 }
 
-
+export { moveOne, moveTwo, moveThree, moveFour }
 export default PokeModal;

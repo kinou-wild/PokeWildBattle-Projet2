@@ -45,7 +45,6 @@ class PokeList extends React.Component {
 
         return (
              <div onLoad={() => this.setState({keyComputer: random})}>
-             <p>{this.state.research}</p>
             <div className='Search' style={{zIndex:100}}>
 <MyInput suggestions={this.state.pokemons.results.map(x=>x.name)} handler = {this.setResearch}></MyInput>
 </div>
@@ -65,7 +64,7 @@ class PokeList extends React.Component {
                             <hr className="cardHr"></hr>
                             <p className="pokeName">{x.name}</p>
                         </div>)}
-                    else if (x.name.includes(this.state.research)) {
+                    else if (x.name.toLowerCase().includes(this.state.research.toLowerCase())) {
                         return(
                             <div className="pokeCard" key={y} onClick={() => this.setState({ 
                             namePokemon: x.name, 
