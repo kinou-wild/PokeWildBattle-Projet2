@@ -18,6 +18,34 @@
     justify-content: space-between;
     flex-direction: column;
 }
+@keyframes slideComputer {
+    0% {margin-right:-40px;
+    }
+
+    75% { margin-right:-100px;
+    }
+    100% {margin-right:200px;
+    }
+}
+@keyframes slidePerso {
+    0% {margin-left:-40px;
+    }
+
+    75% { margin-left:-100px;
+    }
+    100% {margin-left:200px;
+    }
+
+}
+.attackMove {
+    animation-duration: 1.5s;
+    animation-name: slidePerso;
+}
+
+.attackMoveComputer {
+    animation-duration: 1.5s;
+    animation-name: slideComputer;
+}
 
 
 /* --------------- C O M P U T E R ------------------- */

@@ -7,6 +7,8 @@ import { moveOne, moveTwo, moveThree, moveFour } from '../pokedex/PokeModal'
 
 const Fight = (props) => {
     const params = props.match.params;
+    
+
 
 
     const [dataPokemonPerso, setDataPokemonPerso] = useState({
@@ -14,7 +16,8 @@ const Fight = (props) => {
         sprites: [],
         moves: [{
             move: {}
-        }]
+        }],
+        name:' '
     });
 
     const [dataPokemonComputer, setDataPokemonComputer] = useState({
@@ -22,15 +25,21 @@ const Fight = (props) => {
         sprites: [],
         moves: [{
             move: {}
-        }]
+        }],
+        name: ''
     });
 
     const [hpComputer, setHpComputer] = useState()
     const [hpComputerPercent, setHpComputerPercent] = useState(100)
-
+    const [animationComputer, setAnimationComputer] = useState(false)
+    const [logHPComputer, setLogHPComputer] = useState([])
+    const [logComputer, setLogComputer] = useState([])
 
     const [hpPerso, setHpPerso] = useState()
     const [hpPersoPercent, setHpPersoPercent] = useState(100)
+    const [animation, setAnimation] = useState(false)
+    const [logHPPerso, setLogHPPerso] = useState([])
+    const [logPerso, setLogPerso] = useState([])
 
     useEffect(() => {
         getPokemonPerso()
@@ -57,8 +66,9 @@ const Fight = (props) => {
             })
     }
 
-
-
+    const capitalizeFirstLetter = string => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     // ////////////////////////////API attaques pokemon perso////////
 
     const [DataAttPerso1, setDataAttPerso1] = useState({
@@ -183,6 +193,8 @@ const Fight = (props) => {
         const att = pokemonComputerArrayStats[0][4]
         const random = Math.random() * (1 - 0.85) + 0.85
         const finish1 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
+        setLogComputer([...logComputer, DataAttComputer1.name])
+        setLogHPComputer([...logHPComputer, finish1])
         setHpPerso(hpPerso - finish1)
         setHpPersoPercent(hpPersoPercent - (100 - (-((finish1 - pokemonPersoArrayStats[0][5]) / pokemonPersoArrayStats[0][5]) * 100)))
     }
@@ -194,6 +206,8 @@ const Fight = (props) => {
         const att = pokemonComputerArrayStats[0][4]
         const random = Math.random() * (1 - 0.85) + 0.85
         const finish2 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
+        setLogComputer([...logComputer, DataAttComputer2.name])
+        setLogHPComputer([...logHPComputer, finish2])
         setHpPerso(hpPerso - finish2)
         setHpPersoPercent(hpPersoPercent - (100 - (-((finish2 - pokemonPersoArrayStats[0][5]) / pokemonPersoArrayStats[0][5]) * 100)))
 
@@ -206,6 +220,8 @@ const Fight = (props) => {
         const att = pokemonComputerArrayStats[0][4]
         const random = Math.random() * (1 - 0.85) + 0.85
         const finish3 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
+        setLogComputer([...logComputer, DataAttComputer3.name])
+        setLogHPComputer([...logHPComputer, finish3])
         setHpPerso(hpPerso - finish3)
         setHpPersoPercent(hpPersoPercent - (100 - (-((finish3 - pokemonPersoArrayStats[0][5]) / pokemonPersoArrayStats[0][5]) * 100)))
 
@@ -217,6 +233,8 @@ const Fight = (props) => {
         const att = pokemonComputerArrayStats[0][4]
         const random = Math.random() * (1 - 0.85) + 0.85
         const finish4 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
+        setLogComputer([...logComputer, DataAttComputer4.name])
+        setLogHPComputer([...logHPComputer, finish4])
         setHpPerso(hpPerso - finish4)
         setHpPersoPercent(hpPersoPercent - (100 - (-((finish4 - pokemonPersoArrayStats[0][5]) / pokemonPersoArrayStats[0][5]) * 100)))
     }
@@ -233,6 +251,8 @@ const Fight = (props) => {
             const att = pokemonPersoArrayStats[0][4]
             const random = Math.random() * (1 - 0.85) + 0.85
             const finish1 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
+            setLogPerso([...logPerso, DataAttPerso1.name])
+            setLogHPPerso([...logHPPerso, finish1])
             setHpComputer(hpComputer - finish1)
             setHpComputerPercent(hpComputerPercent - (100 - (-((finish1 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
 
@@ -249,6 +269,8 @@ const Fight = (props) => {
             const att = pokemonPersoArrayStats[0][4]
             const random = Math.random() * (1 - 0.85) + 0.85
             const finish2 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
+            setLogPerso([...logPerso, DataAttPerso2.name])
+            setLogHPPerso([...logHPPerso, finish2])
             setHpComputer(hpComputer - finish2)
             setHpComputerPercent(hpComputerPercent - (100 - (-((finish2 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
         }
@@ -264,6 +286,8 @@ const Fight = (props) => {
             const att = pokemonPersoArrayStats[0][4]
             const random = Math.random() * (1 - 0.85) + 0.85
             const finish3 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
+            setLogPerso([...logPerso, DataAttPerso3.name])
+            setLogHPPerso([...logHPPerso, finish3])
             setHpComputer(hpComputer - finish3)
             setHpComputerPercent(hpComputerPercent - (100 - (-((finish3 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
 
@@ -282,12 +306,15 @@ const Fight = (props) => {
             const att = pokemonPersoArrayStats[0][4]
             const random = Math.random() * (1 - 0.85) + 0.85
             const finish4 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
+            setLogPerso([...logPerso, DataAttPerso4.name])
+            setLogHPPerso([...logHPPerso, finish4])
             setHpComputer(hpComputer - finish4)
             setHpComputerPercent(hpComputerPercent - (100 - (-((finish4 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
         }
 
 
     }
+
 
     ////////////////////////////////////////////////////////
 
@@ -300,52 +327,55 @@ const Fight = (props) => {
     }
 
     const turnPerTurn1 = () => {
-        algoPersoAtt1()
-        setTimeout(()=>{randomEnnemyAttack()}, 2000)
+        setAnimation(true);
+        setTimeout(() => {algoPersoAtt1(); setAnimationComputer(true)}, 1500)
+        setTimeout(()=>{randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false)}, 3000)
     }
 
     const turnPerTurn2 = () => {
-        algoPersoAtt2()
-        setTimeout(() => {randomEnnemyAttack()}, 2000)
+        setAnimation(true);
+        setTimeout(() => {algoPersoAtt2(); setAnimationComputer(true)}, 1500)
+        setTimeout(() => {randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false)}, 3000)
 
     }
 
     const turnPerTurn3 = () => {
-        algoPersoAtt3()
-        setTimeout(() => {randomEnnemyAttack()}, 2000)
+        setAnimation(true);
+        setTimeout(() => {algoPersoAtt3(); setAnimationComputer(true)}, 1500)
+        setTimeout(() => {randomEnnemyAttack();setAnimationComputer(false); setAnimation(false)}, 3000)
 
     }
 
 
     const turnPerTurn4 = () => {
-        algoPersoAtt4()
-        setTimeout(() => {randomEnnemyAttack()}, 2000)
+        setAnimation(true);
+        setTimeout(() => {algoPersoAtt4(); setAnimationComputer(true)}, 1500)
+        setTimeout(() => {randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false)}, 3000)
 
     }
 
 
     return (
         <div className='fightPlace'>
-
             <div className='divFight'>
                 <div className='computer'>
                     <div className="infosComputerDiv">
                         <div className="infosComputer">
-                            <div className="nameComputer"><p>{dataPokemonComputer.name}</p></div>
+                            <div className="nameComputer"><p>{capitalizeFirstLetter(dataPokemonComputer.name)}</p></div>
                             <progress className="nes-progress is-success" value={hpComputerPercent} max="100"></progress>
                             <div className="currentHPComputer">{hpComputer >= 0 ? hpComputer : 0} / {pokemonComputerArrayStats[0][5]}</div>
                         </div>
                     </div>
-                    <div className="spriteComputer"><img className="imageComputer" src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
+                    <div className="spriteComputer"><img className={`imageComputer${animationComputer===true && hpComputer>0?' attackMoveComputer':''}`} src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
                 </div>
 
 
 
                 <div className='perso'>
-                    <div className="spritePerso"><img className="imagePerso" src={`http://www.pokestadium.com/sprites/xy/back/${dataPokemonPerso.name}.gif`} alt='back sprite' /></div>
+                    <div className="spritePerso"><img className={`imagePerso${animation===true && hpPerso>0?' attackMove':''}`} src={`http://www.pokestadium.com/sprites/xy/back/${dataPokemonPerso.name}.gif`} alt='back sprite' /></div>
                     <div className="infosPersoDiv">
                         <div className="infosPerso">
-                            <div className="namePerso"><p>{dataPokemonPerso.name}</p></div>
+                            <div className="namePerso"><p>{capitalizeFirstLetter(dataPokemonPerso.name)}</p></div>
                             <progress className="nes-progress is-success" value={hpPersoPercent} max="100"></progress>
                             <div className="currentHPPerso"> {hpPerso >= 0 ? hpPerso : 0} / {pokemonPersoArrayStats[0][5]}</div>
                         </div>
@@ -362,11 +392,11 @@ const Fight = (props) => {
 
 
                 <div className='textCombat'>
-                    Welcome into Pokemon Battle ! {dataPokemonPerso.name} VS {dataPokemonComputer.name}
+                    Welcome to Pokemon Battle ! {capitalizeFirstLetter(dataPokemonPerso.name)} VS {capitalizeFirstLetter(dataPokemonComputer.name)}
                     <br></br>
                     <br></br>
-                    {hpComputer <= 0 ? <p>Tu as gagné avec {dataPokemonPerso.name}</p> : ""}
-                    {hpPerso <= 0 ? <p>Tu as perdu avec {dataPokemonPerso.name}</p> : ""}
+                    {hpComputer <= 0 ? <p>You won as {dataPokemonPerso.name}.</p> : ""}
+                    {hpPerso <= 0 ? <p>You lost as {dataPokemonPerso.name}.</p> : ""}
 
                 </div>
 
