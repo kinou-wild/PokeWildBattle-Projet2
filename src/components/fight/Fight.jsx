@@ -49,8 +49,8 @@ const Fight = (props) => {
     }
 
 
-    const getPokemonComputer = async () => {
-        await axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idcomputer}`)
+    const getPokemonComputer = () => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idcomputer}`)
             .then(res => {
                 setDataPokemonComputer(res.data)
                 setHpComputer(res.data.stats[5].base_stat)
