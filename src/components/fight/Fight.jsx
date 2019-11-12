@@ -225,7 +225,7 @@ const Fight = (props) => {
 
     const algoPersoAtt1 = () => {
 
-        if (hpPerso >= 0) {
+        if (hpPerso > 0) {
 
             const level = (2 * 20 / 5) + 2
             const power = DataAttPerso1.power
@@ -241,7 +241,7 @@ const Fight = (props) => {
 
     const algoPersoAtt2 = () => {
 
-        if (hpPerso >= 0) {
+        if (hpPerso > 0) {
 
             const level = (2 * 20 / 5) + 2
             const power = DataAttPerso2.power
@@ -256,7 +256,7 @@ const Fight = (props) => {
 
     const algoPersoAtt3 = () => {
 
-        if (hpPerso >= 0) {
+        if (hpPerso > 0) {
 
             const level = (2 * 20 / 5) + 2
             const power = DataAttPerso3.power
@@ -274,7 +274,7 @@ const Fight = (props) => {
 
     const algoPersoAtt4 = () => {
 
-        if (hpPerso >= 0) {
+        if (hpPerso > 0) {
 
             const level = (2 * 20 / 5) + 2
             const power = DataAttPerso4.power
@@ -293,36 +293,34 @@ const Fight = (props) => {
 
     const randomEnnemyAttack = () => {
 
-        if (hpComputer >= 0) {
-
+        if (hpComputer > 0) {
             const allEnnemyAttacks = [algoComputerAtt1(), algoComputerAtt2(), algoComputerAtt3(), algoComputerAtt4()]
             return (allEnnemyAttacks[Math.floor(Math.random() * 4)])
-
         }
-
-
     }
 
     const turnPerTurn1 = () => {
         algoPersoAtt1()
-        setTimeout(randomEnnemyAttack(), 2000)
+        setTimeout(()=>{randomEnnemyAttack()}, 2000)
     }
 
     const turnPerTurn2 = () => {
         algoPersoAtt2()
-        setTimeout(randomEnnemyAttack(), 2000)
-        
+        setTimeout(() => {randomEnnemyAttack()}, 2000)
+
     }
 
     const turnPerTurn3 = () => {
         algoPersoAtt3()
-        setTimeout(randomEnnemyAttack(), 2000)
+        setTimeout(() => {randomEnnemyAttack()}, 2000)
+
     }
 
 
     const turnPerTurn4 = () => {
         algoPersoAtt4()
-        setTimeout(randomEnnemyAttack(), 2000)
+        setTimeout(() => {randomEnnemyAttack()}, 2000)
+
     }
 
 
