@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'
 import "./Fight.css";
 import { moveOne, moveTwo, moveThree, moveFour } from '../pokedex/PokeModal'
@@ -321,8 +321,9 @@ const Fight = (props) => {
     const randomEnnemyAttack = () => {
 
         if (hpComputer > 0) {
-            const allEnnemyAttacks = [algoComputerAtt1(), algoComputerAtt2(), algoComputerAtt3(), algoComputerAtt4()]
-            return (allEnnemyAttacks[Math.floor(Math.random() * 4)])
+            const allEnnemyAttacks = [algoComputerAtt1, algoComputerAtt2, algoComputerAtt3, algoComputerAtt4]
+            const randomNumber = Math.floor(Math.random() * 4)
+            return (allEnnemyAttacks[randomNumber]())
         }
     }
 
@@ -354,6 +355,25 @@ const Fight = (props) => {
 
     }
 
+    /////////// LOG ///////////
+
+    const logEndRef = useRef(null)
+    const scrollToBottom = () => {
+        if (logEndRef.current!==null) {
+        logEndRef.current.scrollIntoView({ behavior: "smooth" }) }
+      }
+    useEffect(scrollToBottom, [logPerso,logComputer]);
+    const DisplayLog = () => {
+
+       return logPerso.map((x, y) => {
+        return <>
+          <p>{capitalizeFirstLetter(dataPokemonPerso.name)} uses {x} ! It deals {logHPPerso[y]} damage.</p>
+        {logComputer[y]?<p>{capitalizeFirstLetter(dataPokemonComputer.name)} uses {logComputer[y]} ! It deals {logHPComputer[y]} damage.</p>:''}
+   
+            </>
+        })}
+    
+    /////////////////////////
 
     return (
         <div className='fightPlace'>
@@ -394,10 +414,11 @@ const Fight = (props) => {
                 <div className='textCombat'>
                     Welcome to Pokemon Battle ! {capitalizeFirstLetter(dataPokemonPerso.name)} VS {capitalizeFirstLetter(dataPokemonComputer.name)}
                     <br></br>
+                    {DisplayLog()}
                     <br></br>
                     {hpComputer <= 0 ? <p>You won as {dataPokemonPerso.name}.</p> : ""}
                     {hpPerso <= 0 ? <p>You lost as {dataPokemonPerso.name}.</p> : ""}
-
+                    <div ref={logEndRef}/>
                 </div>
 
             </div>
