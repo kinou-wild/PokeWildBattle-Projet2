@@ -63,7 +63,7 @@ class Versus extends React.Component {
                         </div>
                     </div>
                     <div className='buttonFight'>
-                        <Link to={`/fight/${this.props.photoVs + 1}/${this.state.random}`} test={'hihi'}><button>LET'S FIGHT</button></Link>
+                        <Link to={`/fight/${this.props.photoVs + 1}/${this.state.random}`} ><button>LET'S FIGHT</button></Link>
 
                     </div>
 

@@ -2,12 +2,28 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'
 import "./Fight.css";
 import { moveOne, moveTwo, moveThree, moveFour } from '../pokedex/PokeModal'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
+
 
 
 
 const Fight = (props) => {
+
+    const {
+        buttonLabel,
+        className
+    } = props;
+
+    const [modal, setModal] = useState(true);
+
+    const toggle = () => setModal(!modal);
+
+
+
     const params = props.match.params;
-    
+
 
 
 
@@ -17,7 +33,7 @@ const Fight = (props) => {
         moves: [{
             move: {}
         }],
-        name:' '
+        name: ' '
     });
 
     const [dataPokemonComputer, setDataPokemonComputer] = useState({
@@ -308,8 +324,15 @@ const Fight = (props) => {
             const finish4 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
             setLogPerso([...logPerso, DataAttPerso4.name])
             setLogHPPerso([...logHPPerso, finish4])
-            setHpComputer(hpComputer - finish4)
+            console.log('hpComputer before attack '+hpComputer)
+            const atk4 = () => setHpComputer(hpComputer - finish4)
+            atk4()
+            console.log('hpComputer after attack ' + hpComputer)
+            console.log('hpComputer% before attack ' + hpComputerPercent)
+
             setHpComputerPercent(hpComputerPercent - (100 - (-((finish4 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
+            console.log('hpComputer% after attack ' + hpComputerPercent)
+
         }
 
 
@@ -320,7 +343,9 @@ const Fight = (props) => {
 
     const randomEnnemyAttack = () => {
 
-        if (hpComputer > 0) {
+        if (hpComputer > 0 && hpPerso>0) {
+            console.log('hp computer '+ hpComputer)
+            console.log('hp perso ' +hpPerso)
             const allEnnemyAttacks = [algoComputerAtt1, algoComputerAtt2, algoComputerAtt3, algoComputerAtt4]
             const randomNumber = Math.floor(Math.random() * 4)
             return (allEnnemyAttacks[randomNumber]())
@@ -329,54 +354,63 @@ const Fight = (props) => {
 
     const turnPerTurn1 = () => {
         setAnimation(true);
-        setTimeout(() => {algoPersoAtt1(); setAnimationComputer(true)}, 1500)
-        setTimeout(()=>{randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false)}, 3000)
+        setTimeout(() => { algoPersoAtt1(); animationComputerC() }, 1500)
+        setTimeout(() => { randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false) }, 3000)
     }
 
     const turnPerTurn2 = () => {
         setAnimation(true);
-        setTimeout(() => {algoPersoAtt2(); setAnimationComputer(true)}, 1500)
-        setTimeout(() => {randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false)}, 3000)
+        setTimeout(() => { algoPersoAtt2(); animationComputerC() }, 1500)
+        setTimeout(() => { randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false) }, 3000)
 
     }
 
     const turnPerTurn3 = () => {
         setAnimation(true);
-        setTimeout(() => {algoPersoAtt3(); setAnimationComputer(true)}, 1500)
-        setTimeout(() => {randomEnnemyAttack();setAnimationComputer(false); setAnimation(false)}, 3000)
+        setTimeout(() => { algoPersoAtt3(); animationComputerC() }, 1500)
+        setTimeout(() => { randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false) }, 3000)
 
     }
 
-
+    
     const turnPerTurn4 = () => {
         setAnimation(true);
-        setTimeout(() => {algoPersoAtt4(); setAnimationComputer(true)}, 1500)
-        setTimeout(() => {randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false)}, 3000)
+        setTimeout(() => { algoPersoAtt4(); animationComputerC() }, 1500)
+        setTimeout(() => { randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false) }, 3000)
 
     }
 
+    const animationComputerC = () => {
+        if (hpPerso >= 0 && hpComputer >= 0 ){
+            return setAnimationComputer(true)
+        }
+        
+    }
     /////////// LOG ///////////
 
     const logEndRef = useRef(null)
     const scrollToBottom = () => {
-        if (logEndRef.current!==null) {
-        logEndRef.current.scrollIntoView({ behavior: "smooth" }) }
-      }
-    useEffect(scrollToBottom, [logPerso,logComputer]);
+        if (logEndRef.current !== null) {
+            logEndRef.current.scrollIntoView({ behavior: "smooth" })
+        }
+    }
+    useEffect(scrollToBottom, [logPerso, logComputer]);
     const DisplayLog = () => {
 
-       return logPerso.map((x, y) => {
-        return <>
-          <p>{capitalizeFirstLetter(dataPokemonPerso.name)} uses {x} ! It deals {logHPPerso[y]} damage.</p>
-        {logComputer[y]?<p>{capitalizeFirstLetter(dataPokemonComputer.name)} uses {logComputer[y]} ! It deals {logHPComputer[y]} damage.</p>:''}
-   
+        return logPerso.map((x, y) => {
+            return <>
+                <p>{capitalizeFirstLetter(dataPokemonPerso.name)} uses {x} ! It deals {logHPPerso[y]} damage.</p>
+                {logComputer[y] ? <p>{capitalizeFirstLetter(dataPokemonComputer.name)} uses {logComputer[y]} ! It deals {logHPComputer[y]} damage.</p> : ''}
+
             </>
-        })}
-    
+        })
+    }
+
     /////////////////////////
 
     return (
         <div className='fightPlace'>
+            {console.log(hpComputer)}
             <div className='divFight'>
                 <div className='computer'>
                     <div className="infosComputerDiv">
@@ -386,13 +420,13 @@ const Fight = (props) => {
                             <div className="currentHPComputer">{hpComputer >= 0 ? hpComputer : 0} / {pokemonComputerArrayStats[0][5]}</div>
                         </div>
                     </div>
-                    <div className="spriteComputer"><img className={`imageComputer${animationComputer===true && hpComputer>0?' attackMoveComputer':''}`} src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
+                    <div className="spriteComputer"><img className={`imageComputer${animationComputer === true && hpComputer > 0 ? ' attackMoveComputer' : ''}`} src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
                 </div>
 
 
 
                 <div className='perso'>
-                    <div className="spritePerso"><img className={`imagePerso${animation===true && hpPerso>0?' attackMove':''}`} src={`http://www.pokestadium.com/sprites/xy/back/${dataPokemonPerso.name}.gif`} alt='back sprite' /></div>
+                    <div className="spritePerso"><img className={`imagePerso${animation === true && hpPerso > 0 ? ' attackMove' : ''}`} src={`http://www.pokestadium.com/sprites/xy/back/${dataPokemonPerso.name}.gif`} alt='back sprite' /></div>
                     <div className="infosPersoDiv">
                         <div className="infosPerso">
                             <div className="namePerso"><p>{capitalizeFirstLetter(dataPokemonPerso.name)}</p></div>
@@ -418,11 +452,32 @@ const Fight = (props) => {
                     <br></br>
                     {hpComputer <= 0 ? <p>You won as {dataPokemonPerso.name}.</p> : ""}
                     {hpPerso <= 0 ? <p>You lost as {dataPokemonPerso.name}.</p> : ""}
-                    <div ref={logEndRef}/>
+                    <div ref={logEndRef} />
                 </div>
 
             </div>
-
+            <div>
+                {hpComputer<=0?
+                <Modal isOpen={modal} toggle={toggle} className={className}>
+                        <ModalBody style={{ textAlign: 'center' }}>
+                        YOU WIN !
+                    </ModalBody>
+                    <ModalFooter>
+                            <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none',color:'black' }}>Back to pokedex</Link></Button>
+                    </ModalFooter>
+                </Modal>
+                :''}
+                {hpPerso<=0?
+                <Modal isOpen={modal} toggle={toggle} className={className}>
+                    <ModalBody style={{textAlign:'center'}}>
+                        YOU LOOSE !
+                    </ModalBody>
+                    <ModalFooter>
+                            <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black'}}>Back to pokedex</Link></Button>
+                    </ModalFooter>
+                </Modal>
+                :''}
+            </div>
         </div>
     );
 }
