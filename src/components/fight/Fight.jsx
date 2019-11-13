@@ -4,12 +4,21 @@ import "./Fight.css";
 import { moveOne, moveTwo, moveThree, moveFour } from '../pokedex/PokeModal'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import Loading from './../Loading'
 
 
 
 
 
 const Fight = (props) => {
+    const [loading,setLoading]=useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000)
+
+    }, [])
 
     const {
         buttonLabel,
@@ -354,8 +363,11 @@ const Fight = (props) => {
 
     const turnPerTurn1 = () => {
         setAnimation(true);
-        setTimeout(() => { algoPersoAtt1(); animationComputerC() }, 1500)
         setTimeout(() => { randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false) }, 3000)
+        setTimeout(() => { algoPersoAtt1(); animationComputerC() }, 1500)
+
+       
+        
     }
 
     const turnPerTurn2 = () => {
@@ -407,7 +419,9 @@ const Fight = (props) => {
     }
 
     /////////////////////////
-
+    if (loading) {
+        return <Loading />
+    }
     return (
         <div className='fightPlace'>
             {console.log(hpComputer)}
