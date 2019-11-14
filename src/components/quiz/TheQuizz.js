@@ -2,6 +2,7 @@ import React from 'react';
 import Quiz from "./Quiz";
 import QuizQuestions from './QuizQuestion';
 import Result from './Result';
+import Particle from '..//../Particle';
 
 class TheQuizz extends React.Component {
     constructor(props) {
@@ -123,8 +124,11 @@ class TheQuizz extends React.Component {
 
     render() {
         return (
+            <div> 
+                <Particle />
             <div className="backQuizz">
                 {this.state.result ? this.renderResult() : this.renderQuiz()}
+            </div>
             </div>
         )
     }

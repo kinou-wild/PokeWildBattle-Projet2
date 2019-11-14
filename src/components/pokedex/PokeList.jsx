@@ -4,6 +4,7 @@ import "./PokeList.css";
 import Versus from './Versus'
 import PokeModal from './PokeModal'
 import MyInput from './Searchbar'
+import Footer from '../Footer/Footer';
 
 const random = Math.floor(Math.random() * 151)
 
@@ -88,8 +89,11 @@ class PokeList extends React.Component {
                     photoVs={this.state.keyPokemon}
                     keyC={random} />
 
-
+            <div>
+                <Footer />
             </div>
+            </div>
+            
         )
 
     }

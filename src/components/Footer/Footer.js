@@ -3,6 +3,7 @@ import './Footer.css'
 import { Link } from 'react-router-dom'
 
 
+
 class Footer extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ class Footer extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick} >
+        <button className='footerbutton' onClick={this.handleClick} >
           Want more ?
         </button>
         <div className={this.state.clickMe ? "clickMe" : "container"}>
@@ -29,11 +30,13 @@ class Footer extends Component {
                 QUIZZ
                 </button></Link>
 
-            </div>RéduireRéduire
+            </div>
             <div className='divCard'>
               <img src='http://pngimg.com/uploads/pokemon/pokemon_PNG138.png' alt='' />
               <hr className="cardHr"></hr>
+              <Link to='/contact'>
               <button>CONTACT</button>
+              </Link>
             </div>
           </footer>
         </div>
