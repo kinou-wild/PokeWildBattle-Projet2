@@ -11,7 +11,7 @@ import Loading from './../Loading'
 
 
 const Fight = (props) => {
-    const [loading,setLoading]=useState(true)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         setTimeout(() => {
@@ -388,35 +388,42 @@ const Fight = (props) => {
     }
 
     const turnPerTurn1 = () => {
-        setClickable(!clickable)
-        animationPersoC();
-        setTimeout(() => { setterAlgo1(); animationComputerC() }, 1500)
-        setTimeout(() => { randomEnnemyAttack(attack1); setAnimationComputer(false); setAnimation(false) }, 3000)
-        setClickable(true)
+        if (clickable) {
+            setClickable(false)
+            animationPersoC();
+            setTimeout(() => { setterAlgo1(); animationComputerC() }, 1500)
+            setTimeout(() => { randomEnnemyAttack(attack1); setAnimationComputer(false); setAnimation(false); setClickable(true) }, 3000)
+        }
     }
 
     const turnPerTurn2 = () => {
-        animationPersoC();
-        setTimeout(() => { setterAlgo2(); animationComputerC() }, 1500)
-        setTimeout(() => { randomEnnemyAttack(attack2); setAnimationComputer(false); setAnimation(false) }, 3000)
-
+        if (clickable) {
+            setClickable(false)
+            animationPersoC();
+            setTimeout(() => { setterAlgo2(); animationComputerC() }, 1500)
+            setTimeout(() => { randomEnnemyAttack(attack2); setAnimationComputer(false); setAnimation(false); setClickable(true) }, 3000)
+        }
     }
 
     const turnPerTurn3 = () => {
-        animationPersoC();
-        setTimeout(() => { setterAlgo3(); animationComputerC() }, 1500)
-        setTimeout(() => { randomEnnemyAttack(attack3); setAnimationComputer(false); setAnimation(false) }, 3000)
-
+        if (clickable) {
+            setClickable(false)
+            animationPersoC();
+            setTimeout(() => { setterAlgo3(); animationComputerC() }, 1500)
+            setTimeout(() => { randomEnnemyAttack(attack3); setAnimationComputer(false); setAnimation(false); setClickable(true) }, 3000)
+        }
     }
 
     const turnPerTurn4 = () => {
-        animationPersoC();
-        setTimeout(() => { setterAlgo4(); animationComputerC() }, 1500)
-        setTimeout(() => { randomEnnemyAttack(attack4); setAnimationComputer(false); setAnimation(false) }, 3000)
-
+        if (clickable) {
+            setClickable(false)
+            animationPersoC();
+            setTimeout(() => { setterAlgo4(); animationComputerC() }, 1500)
+            setTimeout(() => { randomEnnemyAttack(attack4); setAnimationComputer(false); setAnimation(false); setClickable(true) }, 3000)
+        }
     }
-    const handleAttack1= event => {
-        clickable?turnPerTurn1():event.preventDefault()
+    const handleAttack1 = event => {
+        clickable ? turnPerTurn1() : event.preventDefault()
     }
     const animationPersoC = () => {
         if (hpPerso >= 0 && hpComputer >= 0) {
@@ -479,7 +486,7 @@ const Fight = (props) => {
                             <div className="currentHPPerso"> {hpPerso >= 0 ? hpPerso : 0} / {pokemonPersoArrayStats[0][5]}</div>
                         </div>
                         <div className="attackChoice">
-                            <div className="attack"><button onClick={() => handleAttack1()} className="button-attack">{DataAttPerso1.name}</button></div>
+                            <div className="attack"><button onClick={() => turnPerTurn1 ()} className="button-attack">{DataAttPerso1.name}</button></div>
                             <div className="attack"><button onClick={() => turnPerTurn2()} className="button-attack">{DataAttPerso2.name}</button></div>
                             <div className="attack"><button onClick={() => turnPerTurn3()} className="button-attack">{DataAttPerso3.name}</button></div>
                             <div className="attack"><button onClick={() => turnPerTurn4()} className="button-attack">{DataAttPerso4.name}</button></div>
