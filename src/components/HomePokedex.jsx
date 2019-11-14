@@ -15,18 +15,18 @@ class HomePokedex extends React.Component {
             this.setState({ loading: false })
         }, 3000)
     }
-    
+
     render() {
         if (this.state.loading) {
             return <Loading />
         }
         return (
-            <div >
+            <div>
                 <Particle />
                 <Pokedex />
                 <Footer />
+                <iframe width="0" height="0" src="https://www.youtube.com/embed/SrgaUY4EDLc?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-
         );
     }
 }

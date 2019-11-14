@@ -4,12 +4,12 @@ import PokeList from './PokeList'
 
 
 class Pokedex extends React.Component {
-    
+
     render() {
-        
+
         return (
             <div className="pokedexPage">
-                <PokeList />
+               <PokeList />      
             </div>
         )
 

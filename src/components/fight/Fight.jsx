@@ -462,6 +462,7 @@ const Fight = (props) => {
     }
     return (
         <div className='fightPlace'>
+            <iframe width="0" height="0" src="https://www.youtube.com/embed/t-krHIjao-0?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; loop" allowfullscreen></iframe>
             {console.log(hpComputer)}
             <div className='divFight'>
                 <div className='computer'>
