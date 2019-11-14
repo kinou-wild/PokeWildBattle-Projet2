@@ -2,7 +2,7 @@ import React from 'react';
 import Quiz from "./Quiz";
 import QuizQuestions from './QuizQuestion';
 import Result from './Result';
-import Particle from '..//../Particle';
+import Particle from '../../Particle';
 
 class TheQuizz extends React.Component {
     constructor(props) {

@@ -5,6 +5,14 @@
     text-transform: uppercase;
     font-family: 'Press Start 2P', cursive;
     margin-top: 20vh;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+
 }
 
 .result{
@@ -16,15 +24,22 @@
   width: 120vh;
   height: auto;
   margin-bottom: 1vh !important;
+  font-size: 0.6em;
 }
 .containerh1span{
   margin-bottom: 10vh;
+
 }
 
 .quizp{
   background-color: white;
-  width: 50vh;
+  width: 70vh;
   height: auto;
+  font-size: 0.4em;
+  margin: auto;
+
+
+  
 }
 
 .quizspan{
@@ -45,6 +60,8 @@
     height: auto;
     margin: 20px!important;
     background-color: white;
+    font-size: 0.4em;
+
 }
 
 .options {
