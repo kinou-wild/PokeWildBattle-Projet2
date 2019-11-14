@@ -6,7 +6,7 @@ import Fight from './fight/Fight'
 import TheQuizz from './quiz/TheQuizz'
 import QuizHomepage from './QuizHomepage';
 import Quiz from './QuizDeux/Quiz';
-import ContactList from './contact/ContactList';
+import ContactContainer from './contact/ContactContainer';
 
 
 
@@ -24,7 +24,7 @@ class Router extends Component {
                     <Route path='/quiz' component={QuizHomepage} />
                     <Route path='/quiz1' component ={TheQuizz}/>
                     <Route path='/quiz2' component ={Quiz}/>
-                    <Route path='/contact' component ={ContactList}/>
+                    <Route path='/contact' component ={ContactContainer}/>
                 </BrowserRouter>
             </Switch>
         )

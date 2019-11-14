@@ -37,9 +37,9 @@ const MyContactList = [
              {MyContactList.map(e => 
                 <Contact key={e.name} {...e} />)}
          </div>
-         <div>
+             <div >
              <Link to='/pokedex'>
-                <button>Back to Pokedex</button>
+                     <button className='buttonContact'>Back to Pokedex</button>
             </Link>
          </div>
         </div>

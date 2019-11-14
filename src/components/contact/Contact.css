@@ -1,15 +1,15 @@
 .contact {
+    top:5vh;
     padding-left: 1em;
     padding-right: 1em;
     width: 95vh;
-    margin-top: 10vh;
-    margin-bottom: 10px;
+    margin-bottom: 100px;   
   }
 
-  .contactcontainer{
-    background-image: url(http://media-s3-us-east-1.ceros.com/hype-beast/images/2018/07/13/a9a51bc0b8d626db493ab5f9a971b043/background-hero.png);
-
-  }
+.contactcontainer{
+  margin-left: 2%;
+}
+  
   
   /* Contact image */
   .contact .avatar {
@@ -40,4 +40,10 @@
   display: flex;
   flex-wrap: wrap;
   z-index: 1000!important;
+}
+
+.buttonContact{
+ position: fixed;
+ bottom: 0;
+ left: 0;
 }

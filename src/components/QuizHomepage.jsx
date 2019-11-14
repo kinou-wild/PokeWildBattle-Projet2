@@ -27,7 +27,7 @@ class QuizHomepage extends React.Component {
                 </div>
             </div>
             <Link to='/pokedex' className='homepagepokedexbtn'>
-            <button >
+            <button className='backToPokedex'>
                 Back to Pokedex
             </button>
             </Link>

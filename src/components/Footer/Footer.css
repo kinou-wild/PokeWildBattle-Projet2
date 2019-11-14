@@ -32,8 +32,9 @@ button{
 	border-radius: 3px;
 }
 .footerbutton{
-	position: absolute;
-	bottom: -450px;
+	position: fixed;
+	bottom: 0;
+	left:0;
 }
 
 hr {
