@@ -1,7 +1,7 @@
 .canvas {
     position: relative;
-    margin-top: 0%;
-    width: 1700px;
+    margin-top: -3%;
+    padding:0px !important;
     height: 1000px;
     margin-left: 0%;
     margin-right: 0%;
@@ -11,6 +11,11 @@
     background-position: center 75%;
     background-image: url(http://media-s3-us-east-1.ceros.com/hype-beast/images/2018/07/13/a9a51bc0b8d626db493ab5f9a971b043/background-hero.png);
   }
+.canvas div {
+  display: flex;
+  align-items: center;
+height:100%;
+width: 100%;}
 
   svg {
       width: 100%;
@@ -39,9 +44,11 @@
   
 .pokeball-button {
   z-index:30000;
-
 }
-  
+  svg {
+    position: absolute;
+    top: 50%;
+  }
   .pokeball.pulsing
     .pokeball-circle{
       cursor: pointer ;
@@ -93,29 +100,24 @@
   
   .pika {
     animation: infinite;
-    animation-duration: 6s ;
+    animation-duration: 7s ;
     animation-name: slidePoke;
-    display: flex;
-    position: relative;
-    top:125px;
+    height:50%;
+;
     
   
 }
   @keyframes slidePoke {
-      from {
-          margin-left: 100%;
-          width: 40%;
-        }
-        100% {
-          margin-left: 50%;
-          width: 40%;
-        }
-      
-        to {
-          margin-left: -60%;
-          width: 40%;
-        }
-  }
+      0%{
+        margin-left: 120%;
+          }
+   
+
+      100% {
+        margin-left: -90%;
+      }
+    }
+  
   
 
   
