@@ -45,11 +45,14 @@ const Fight = (props) => {
         name: ''
     });
 
+    const [clickable, setClickable] = useState(true)
+
     const [hpComputer, setHpComputer] = useState()
     const [hpComputerPercent, setHpComputerPercent] = useState(100)
     const [animationComputer, setAnimationComputer] = useState(false)
     const [logHPComputer, setLogHPComputer] = useState([])
     const [logComputer, setLogComputer] = useState([])
+
 
     const [hpPerso, setHpPerso] = useState()
     const [hpPersoPercent, setHpPersoPercent] = useState(100)
@@ -267,14 +270,9 @@ const Fight = (props) => {
             const att = pokemonPersoArrayStats[0][4]
             const random = Math.random() * (1 - 0.85) + 0.85
             const finish1 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
-            setLogPerso([...logPerso, DataAttPerso1.name])
-            setLogHPPerso([...logHPPerso, finish1])
-            setHpComputer(hpComputer - finish1)
-            setHpComputerPercent(hpComputerPercent - (100 - (-((finish1 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
-
+            return finish1
         }
     }
-
     const algoPersoAtt2 = () => {
 
         if (hpPerso > 0) {
@@ -285,13 +283,9 @@ const Fight = (props) => {
             const att = pokemonPersoArrayStats[0][4]
             const random = Math.random() * (1 - 0.85) + 0.85
             const finish2 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
-            setLogPerso([...logPerso, DataAttPerso2.name])
-            setLogHPPerso([...logHPPerso, finish2])
-            setHpComputer(hpComputer - finish2)
-            setHpComputerPercent(hpComputerPercent - (100 - (-((finish2 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
+            return finish2
         }
     }
-
     const algoPersoAtt3 = () => {
 
         if (hpPerso > 0) {
@@ -302,15 +296,9 @@ const Fight = (props) => {
             const att = pokemonPersoArrayStats[0][4]
             const random = Math.random() * (1 - 0.85) + 0.85
             const finish3 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
-            setLogPerso([...logPerso, DataAttPerso3.name])
-            setLogHPPerso([...logHPPerso, finish3])
-            setHpComputer(hpComputer - finish3)
-            setHpComputerPercent(hpComputerPercent - (100 - (-((finish3 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
-
+            return finish3
         }
-
     }
-
 
     const algoPersoAtt4 = () => {
 
@@ -322,30 +310,68 @@ const Fight = (props) => {
             const att = pokemonPersoArrayStats[0][4]
             const random = Math.random() * (1 - 0.85) + 0.85
             const finish4 = Math.round((((level * power * (att / def)) / 50) + 2) * random)
-            setLogPerso([...logPerso, DataAttPerso4.name])
-            setLogHPPerso([...logHPPerso, finish4])
-            console.log('hpComputer before attack '+hpComputer)
-            const atk4 = () => setHpComputer(hpComputer - finish4)
-            atk4()
-            console.log('hpComputer after attack ' + hpComputer)
-            console.log('hpComputer% before attack ' + hpComputerPercent)
+            return finish4
+        }
+    }
 
-            setHpComputerPercent(hpComputerPercent - (100 - (-((finish4 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
-            console.log('hpComputer% after attack ' + hpComputerPercent)
+    const attack1 = algoPersoAtt1()
+    const attack2 = algoPersoAtt2()
+    const attack3 = algoPersoAtt3()
+    const attack4 = algoPersoAtt4()
+
+    const setterAlgo1 = () => {
+
+        if (hpPerso > 0 && hpComputer > 0) {
+
+            setLogPerso([...logPerso, DataAttPerso1.name])
+            setLogHPPerso([...logHPPerso, attack1])
+            setHpComputer(hpComputer - attack1)
+            setHpComputerPercent(hpComputerPercent - (100 - (-((attack1 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
+
+        }
+    }
+    const setterAlgo2 = () => {
+
+        if (hpPerso > 0 && hpComputer > 0) {
+
+            setLogPerso([...logPerso, DataAttPerso2.name])
+            setLogHPPerso([...logHPPerso, attack2])
+            setHpComputer(hpComputer - attack2)
+            setHpComputerPercent(hpComputerPercent - (100 - (-((attack2 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
+        }
+    }
+    const setterAlgo3 = () => {
+
+        if (hpPerso > 0 && hpComputer > 0) {
+
+            setLogPerso([...logPerso, DataAttPerso3.name])
+            setLogHPPerso([...logHPPerso, attack3])
+            setHpComputer(hpComputer - attack3)
+            setHpComputerPercent(hpComputerPercent - (100 - (-((attack3 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
 
         }
 
+    }
+    const setterAlgo4 = () => {
 
+        if (hpPerso > 0 && hpComputer > 0) {
+
+            setLogPerso([...logPerso, DataAttPerso4.name])
+            setLogHPPerso([...logHPPerso, attack4])
+            const atk4 = () => setHpComputer(hpComputer - attack4)
+            atk4()
+            setHpComputerPercent(hpComputerPercent - (100 - (-((attack4 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
+        }
     }
 
 
     ////////////////////////////////////////////////////////
 
-    const randomEnnemyAttack = () => {
+    const randomEnnemyAttack = (dmg) => {
 
-        if (hpComputer > 0 && hpPerso>0) {
-            console.log('hp computer '+ hpComputer)
-            console.log('hp perso ' +hpPerso)
+        if (hpComputer - dmg > 0 && hpPerso > 0) {
+            console.log('hp computer ' + hpComputer)
+            console.log('hp perso ' + hpPerso)
             const allEnnemyAttacks = [algoComputerAtt1, algoComputerAtt2, algoComputerAtt3, algoComputerAtt4]
             const randomNumber = Math.floor(Math.random() * 4)
             return (allEnnemyAttacks[randomNumber]())
@@ -353,38 +379,46 @@ const Fight = (props) => {
     }
 
     const turnPerTurn1 = () => {
-        setAnimation(true);
-        setTimeout(() => { algoPersoAtt1(); animationComputerC() }, 1500)
-        setTimeout(() => { randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false) }, 3000)
+        setClickable(!clickable)
+        animationPersoC();
+        setTimeout(() => { setterAlgo1(); animationComputerC() }, 1500)
+        setTimeout(() => { randomEnnemyAttack(attack1); setAnimationComputer(false); setAnimation(false) }, 3000)
+        setClickable(true)
     }
 
     const turnPerTurn2 = () => {
-        setAnimation(true);
-        setTimeout(() => { algoPersoAtt2(); animationComputerC() }, 1500)
-        setTimeout(() => { randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false) }, 3000)
+        animationPersoC();
+        setTimeout(() => { setterAlgo2(); animationComputerC() }, 1500)
+        setTimeout(() => { randomEnnemyAttack(attack2); setAnimationComputer(false); setAnimation(false) }, 3000)
 
     }
 
     const turnPerTurn3 = () => {
-        setAnimation(true);
-        setTimeout(() => { algoPersoAtt3(); animationComputerC() }, 1500)
-        setTimeout(() => { randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false) }, 3000)
+        animationPersoC();
+        setTimeout(() => { setterAlgo3(); animationComputerC() }, 1500)
+        setTimeout(() => { randomEnnemyAttack(attack3); setAnimationComputer(false); setAnimation(false) }, 3000)
 
     }
 
-    
     const turnPerTurn4 = () => {
-        setAnimation(true);
-        setTimeout(() => { algoPersoAtt4(); animationComputerC() }, 1500)
-        setTimeout(() => { randomEnnemyAttack(); setAnimationComputer(false); setAnimation(false) }, 3000)
+        animationPersoC();
+        setTimeout(() => { setterAlgo4(); animationComputerC() }, 1500)
+        setTimeout(() => { randomEnnemyAttack(attack4); setAnimationComputer(false); setAnimation(false) }, 3000)
 
+    }
+    const handleAttack1= event => {
+        clickable?turnPerTurn1():event.preventDefault()
+    }
+    const animationPersoC = () => {
+        if (hpPerso >= 0 && hpComputer >= 0) {
+            return setAnimation(true)
+        }
     }
 
     const animationComputerC = () => {
-        if (hpPerso >= 0 && hpComputer >= 0 ){
+        if (hpPerso >= 0 && hpComputer >= 0) {
             return setAnimationComputer(true)
         }
-        
     }
     /////////// LOG ///////////
 
@@ -420,7 +454,7 @@ const Fight = (props) => {
                             <div className="currentHPComputer">{hpComputer >= 0 ? hpComputer : 0} / {pokemonComputerArrayStats[0][5]}</div>
                         </div>
                     </div>
-                    <div className="spriteComputer"><img className={`imageComputer${animationComputer === true && hpComputer > 0 ? ' attackMoveComputer' : ''}`} src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
+                    <div className="spriteComputer"><img id='abc' onClick={(e) => { console.log('target is ' + e.target.width) }} className={`imageComputer${animationComputer === true && hpComputer > 0 ? ' attackMoveComputer' : ''}`} src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
                 </div>
 
 
@@ -434,13 +468,12 @@ const Fight = (props) => {
                             <div className="currentHPPerso"> {hpPerso >= 0 ? hpPerso : 0} / {pokemonPersoArrayStats[0][5]}</div>
                         </div>
                         <div className="attackChoice">
-                            <div className="attack"><button onClick={() => turnPerTurn1()} className="button-attack">{DataAttPerso1.name}</button></div>
+                            <div className="attack"><button onClick={() => handleAttack1()} className="button-attack">{DataAttPerso1.name}</button></div>
                             <div className="attack"><button onClick={() => turnPerTurn2()} className="button-attack">{DataAttPerso2.name}</button></div>
                             <div className="attack"><button onClick={() => turnPerTurn3()} className="button-attack">{DataAttPerso3.name}</button></div>
                             <div className="attack"><button onClick={() => turnPerTurn4()} className="button-attack">{DataAttPerso4.name}</button></div>
                         </div>
                     </div>
-
                 </div>
 
 
@@ -457,26 +490,26 @@ const Fight = (props) => {
 
             </div>
             <div>
-                {hpComputer<=0?
-                <Modal isOpen={modal} toggle={toggle} className={className}>
+                {hpComputer <= 0 ?
+                    <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalBody style={{ textAlign: 'center' }}>
-                        YOU WIN !
+                            YOU WIN !
                     </ModalBody>
-                    <ModalFooter>
-                            <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none',color:'black' }}>Back to pokedex</Link></Button>
-                    </ModalFooter>
-                </Modal>
-                :''}
-                {hpPerso<=0?
-                <Modal isOpen={modal} toggle={toggle} className={className}>
-                    <ModalBody style={{textAlign:'center'}}>
-                        YOU LOOSE !
+                        <ModalFooter>
+                            <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}>Back to pokedex</Link></Button>
+                        </ModalFooter>
+                    </Modal>
+                    : ''}
+                {hpPerso <= 0 ?
+                    <Modal isOpen={modal} toggle={toggle} className={className}>
+                        <ModalBody style={{ textAlign: 'center' }}>
+                            YOU LOSE !
                     </ModalBody>
-                    <ModalFooter>
-                            <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black'}}>Back to pokedex</Link></Button>
-                    </ModalFooter>
-                </Modal>
-                :''}
+                        <ModalFooter>
+                            <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}>Back to pokedex</Link></Button>
+                        </ModalFooter>
+                    </Modal>
+                    : ''}
             </div>
         </div>
     );
