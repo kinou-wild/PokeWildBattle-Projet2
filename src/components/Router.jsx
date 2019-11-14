@@ -7,6 +7,7 @@ import TheQuizz from './quiz/TheQuizz'
 import QuizHomepage from './QuizHomepage';
 import Quiz from './QuizDeux/Quiz';
 import ContactContainer from './contact/ContactContainer';
+import FooterHomepage from './Footer/FooterHomepage'
 
 
 
@@ -25,6 +26,7 @@ class Router extends Component {
                     <Route path='/quiz1' component ={TheQuizz}/>
                     <Route path='/quiz2' component ={Quiz}/>
                     <Route path='/contact' component ={ContactContainer}/>
+                    <Route path='/footer' component={FooterHomepage} />
                 </BrowserRouter>
             </Switch>
         )

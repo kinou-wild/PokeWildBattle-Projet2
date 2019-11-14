@@ -18,28 +18,11 @@ class Footer extends Component {
   render() {
     return (
       <div>
+        <Link to='/Footer'>
         <button className='footerbutton' onClick={this.handleClick} >
           Want more ?
         </button>
-        <div className={this.state.clickMe ? "clickMe" : "container"}>
-          <footer className='footer'>
-            <div className='divCard'>
-              <img src='https://www.pinclipart.com/picdir/big/9-91595_mesmerizing-transparent-png-mart-pikachu-png-clipart.png' alt=''></img>
-              <hr className="cardHr"></hr>
-              <Link to='/quiz'><button>
-                QUIZZ
-                </button></Link>
-
-            </div>
-            <div className='divCard'>
-              <img src='http://pngimg.com/uploads/pokemon/pokemon_PNG138.png' alt='' />
-              <hr className="cardHr"></hr>
-              <Link to='/contact'>
-              <button>CONTACT</button>
-              </Link>
-            </div>
-          </footer>
-        </div>
+        </Link>
       </div>
     );
   }
