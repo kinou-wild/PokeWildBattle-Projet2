@@ -533,7 +533,7 @@ const Fight = (props) => {
                 {hpPerso <= 0 ?
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalBody style={{ textAlign: 'center' }}>
-                            YOU LOSE !
+                            YOU LOOSE !
                     </ModalBody>
                         <ModalFooter>
                             <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}>Back to pokedex</Link></Button>
