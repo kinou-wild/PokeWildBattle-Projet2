@@ -5,6 +5,7 @@ import { moveOne, moveTwo, moveThree, moveFour } from '../pokedex/PokeModal'
 import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Loading from './../Loading'
+import ReactPlayer from 'react-player'
 
 
 
@@ -494,7 +495,17 @@ const Fight = (props) => {
     }
     return (
         <div className='fightPlace'>
-            <iframe className="music-fight" width="560" height="315" src="https://www.youtube.com/embed/GKzzANNFu_Q?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <ReactPlayer className="music-fight" url="https://www.youtube.com/embed/GKzzANNFu_Q" playing
+            controls
+                config={{
+                    file: {
+                        attributes: {
+                            autoPlay: true,
+                            
+                        }
+                    }
+                }}
+            />
             {console.log(hpComputer)}
             <div className='divFight'>
                 <div className='computer'>
