@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'
 import "./Fight.css";
 import { moveOne, moveTwo, moveThree, moveFour } from '../pokedex/PokeModal'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Loading from './../Loading'
 
@@ -12,6 +12,7 @@ import Loading from './../Loading'
 
 const Fight = (props) => {
     const [loading, setLoading] = useState(true)
+    const [wins, setWins]= useState(1)
 
     useEffect(() => {
         setTimeout(() => {
@@ -32,6 +33,7 @@ const Fight = (props) => {
 
 
     const params = props.match.params;
+    console.log('params are ' +params)
 
 
 
@@ -54,6 +56,7 @@ const Fight = (props) => {
         name: ''
     });
 
+
     const [clickable, setClickable] = useState(true)
 
     const [hpComputer, setHpComputer] = useState()
@@ -71,11 +74,11 @@ const Fight = (props) => {
 
     useEffect(() => {
         getPokemonPerso()
-    }, [])
+    }, [wins])
 
     useEffect(() => {
         getPokemonComputer()
-    }, [])
+    }, [wins])
 
     const getPokemonPerso = () => {
         axios.get(`https://pokeapi.co/api/v2/pokemon/${params.idperso}`)
@@ -190,7 +193,7 @@ const Fight = (props) => {
         getAttComputer2(urlComp2)
         getAttComputer3(urlComp3)
         getAttComputer4(urlComp4)
-    }, [dataPokemonComputer])
+    }, [dataPokemonComputer, wins])
 
 
 
@@ -204,7 +207,7 @@ const Fight = (props) => {
         getAttPerso2(url2)
         getAttPerso3(url3)
         getAttPerso4(url4)
-    }, [dataPokemonPerso])
+    }, [dataPokemonPerso, wins])
 
 
     ////////////////////////////////////
@@ -444,16 +447,21 @@ const Fight = (props) => {
             logEndRef.current.scrollIntoView({ behavior: "smooth" })
         }
     }
-    useEffect(scrollToBottom, [logPerso, logComputer]);
+    useEffect(scrollToBottom, [logPerso, logComputer, hpComputer, hpPerso]);
     const DisplayLog = () => {
 
         return logPerso.map((x, y) => {
             return <>
                 <p>{capitalizeFirstLetter(dataPokemonPerso.name)} uses {x} ! It deals {logHPPerso[y]} damage.</p>
-                {logComputer[y] ? <p>{capitalizeFirstLetter(dataPokemonComputer.name)} uses {logComputer[y]} ! It deals {logHPComputer[y]} damage.</p> : ''}
+                {logComputer[y-(wins-1)] ? <p>{capitalizeFirstLetter(dataPokemonComputer.name)} uses {logComputer[y-(wins-1)]} ! It deals {logHPComputer[y-(wins-1)]} damage.</p> : ''}
 
             </>
         })
+    }
+    const nextFight = () => {
+        setWins(wins+1)
+        setHpComputerPercent(100)
+        setHpPersoPercent(100)
     }
 
     /////////////////////////
@@ -473,7 +481,7 @@ const Fight = (props) => {
                             <div className="currentHPComputer">{hpComputer >= 0 ? hpComputer : 0} / {pokemonComputerArrayStats[0][5]}</div>
                         </div>
                     </div>
-                    <div className="spriteComputer"><img id='abc' onClick={(e) => { console.log('target is ' + e.target.width) }} className={`imageComputer${animationComputer === true && hpComputer > 0 ? ' attackMoveComputer' : ''}`} src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
+                    <div className="spriteComputer"><img className={`imageComputer${animationComputer === true && hpComputer > 0 ? ' attackMoveComputer' : ''}`} src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
                 </div>
 
 
@@ -487,7 +495,7 @@ const Fight = (props) => {
                             <div className="currentHPPerso"> {hpPerso >= 0 ? hpPerso : 0} / {pokemonPersoArrayStats[0][5]}</div>
                         </div>
                         <div className="attackChoice">
-                            <div className="attack"><button onClick={() => turnPerTurn1 ()} className="button-attack">{DataAttPerso1.name}</button></div>
+                            <div className="attack"><button onClick={() => turnPerTurn1()} className="button-attack">{DataAttPerso1.name}</button></div>
                             <div className="attack"><button onClick={() => turnPerTurn2()} className="button-attack">{DataAttPerso2.name}</button></div>
                             <div className="attack"><button onClick={() => turnPerTurn3()} className="button-attack">{DataAttPerso3.name}</button></div>
                             <div className="attack"><button onClick={() => turnPerTurn4()} className="button-attack">{DataAttPerso4.name}</button></div>
@@ -504,17 +512,22 @@ const Fight = (props) => {
                     <br></br>
                     {hpComputer <= 0 ? <p>You won as {dataPokemonPerso.name}.</p> : ""}
                     {hpPerso <= 0 ? <p>You lost as {dataPokemonPerso.name}.</p> : ""}
+                   {hpComputer <=0 || hpPerso<=0?<Button style={{display:'flex', marginLeft:'auto', marginRight:'auto', alignSelf:'center'}} color='danger' onClick={toggle}>Open Menu</Button>:""}
                     <div ref={logEndRef} />
                 </div>
 
             </div>
             <div>
                 {hpComputer <= 0 ?
-                    <Modal isOpen={modal} toggle={toggle} className={className}>
+                    <Modal style={{marginTop:'30%', bottom:'170px'}} isOpen={modal} toggle={toggle} className={className}>
                         <ModalBody style={{ textAlign: 'center' }}>
                             YOU WIN !
+                            <br/>
+                            You won {wins} consecutive battles.
+                            Onward to the next !
                     </ModalBody>
                         <ModalFooter>
+                            <Button onClick={nextFight} ><Link to={`/fight/${params.idperso}/${Math.floor(Math.random()*151)}`}>Continue</Link></Button>
                             <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}>Back to pokedex</Link></Button>
                         </ModalFooter>
                     </Modal>
