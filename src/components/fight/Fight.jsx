@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'
 import "./Fight.css";
 import { moveOne, moveTwo, moveThree, moveFour } from '../pokedex/PokeModal'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Loading from './../Loading'
 
@@ -136,8 +136,6 @@ const Fight = (props) => {
     }
 
 
-
-
     const getAttPerso4 = (url) => {
         axios.get(url)
             .then(res => setDataAttPerso4(res.data))
@@ -162,29 +160,18 @@ const Fight = (props) => {
         axios.get(url)
             .then(res => setDataAttComputer1(res.data))
     }
-
-
     const getAttComputer2 = (url) => {
         axios.get(url)
             .then(res => setDataAttComputer2(res.data))
     }
-
-
     const getAttComputer3 = (url) => {
         axios.get(url)
             .then(res => setDataAttComputer3(res.data))
     }
-
-
-
-
     const getAttComputer4 = (url) => {
         axios.get(url)
             .then(res => setDataAttComputer4(res.data))
     }
-
-
-
 
     useEffect(() => {
         const urlComp1 = dataPokemonComputer.moves[moveOne % dataPokemonComputer.moves.length].move.url
@@ -244,7 +231,6 @@ const Fight = (props) => {
         setLogHPComputer([...logHPComputer, finish2])
         setHpPerso(hpPerso - finish2)
         setHpPersoPercent(hpPersoPercent - (100 - (-((finish2 - pokemonPersoArrayStats[0][5]) / pokemonPersoArrayStats[0][5]) * 100)))
-
     }
 
     const algoComputerAtt3 = () => {
@@ -260,6 +246,7 @@ const Fight = (props) => {
         setHpPersoPercent(hpPersoPercent - (100 - (-((finish3 - pokemonPersoArrayStats[0][5]) / pokemonPersoArrayStats[0][5]) * 100)))
 
     }
+
     const algoComputerAtt4 = () => {
         const level = (2 * 20 / 5) + 2
         const power = DataAttComputer4.power
@@ -276,9 +263,7 @@ const Fight = (props) => {
     ///////////////////// algo perso /////////////////////////
 
     const algoPersoAtt1 = () => {
-
         if (hpPerso > 0) {
-
             const level = (2 * 20 / 5) + 2
             const power = DataAttPerso1.power
             const def = pokemonPersoArrayStats[0][3]
@@ -289,9 +274,7 @@ const Fight = (props) => {
         }
     }
     const algoPersoAtt2 = () => {
-
         if (hpPerso > 0) {
-
             const level = (2 * 20 / 5) + 2
             const power = DataAttPerso2.power
             const def = pokemonPersoArrayStats[0][3]
@@ -301,10 +284,9 @@ const Fight = (props) => {
             return finish2
         }
     }
+
     const algoPersoAtt3 = () => {
-
         if (hpPerso > 0) {
-
             const level = (2 * 20 / 5) + 2
             const power = DataAttPerso3.power
             const def = pokemonPersoArrayStats[0][3]
@@ -316,9 +298,7 @@ const Fight = (props) => {
     }
 
     const algoPersoAtt4 = () => {
-
         if (hpPerso > 0) {
-
             const level = (2 * 20 / 5) + 2
             const power = DataAttPerso4.power
             const def = pokemonPersoArrayStats[0][3]
@@ -335,9 +315,7 @@ const Fight = (props) => {
     const attack4 = algoPersoAtt4()
 
     const setterAlgo1 = () => {
-
         if (hpPerso > 0 && hpComputer > 0) {
-
             setLogPerso([...logPerso, DataAttPerso1.name])
             setLogHPPerso([...logHPPerso, attack1])
             setHpComputer(hpComputer - attack1)
@@ -346,9 +324,7 @@ const Fight = (props) => {
         }
     }
     const setterAlgo2 = () => {
-
         if (hpPerso > 0 && hpComputer > 0) {
-
             setLogPerso([...logPerso, DataAttPerso2.name])
             setLogHPPerso([...logHPPerso, attack2])
             setHpComputer(hpComputer - attack2)
@@ -363,9 +339,7 @@ const Fight = (props) => {
             setLogHPPerso([...logHPPerso, attack3])
             setHpComputer(hpComputer - attack3)
             setHpComputerPercent(hpComputerPercent - (100 - (-((attack3 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
-
         }
-
     }
     const setterAlgo4 = () => {
 
@@ -378,8 +352,6 @@ const Fight = (props) => {
             setHpComputerPercent(hpComputerPercent - (100 - (-((attack4 - pokemonComputerArrayStats[0][5]) / pokemonComputerArrayStats[0][5]) * 100)))
         }
     }
-
-
     ////////////////////////////////////////////////////////
 
     const randomEnnemyAttack = (dmg) => {
@@ -408,7 +380,6 @@ const Fight = (props) => {
             setTimeout(() => { randomEnnemyAttack(attack2); setAnimationComputer(false); setAnimation(false); setClickable(true) }, 3000)
         }
     }
-
     const turnPerTurn3 = () => {
         if (clickable) {
             setClickable(false)
@@ -505,9 +476,6 @@ const Fight = (props) => {
                     </div>
                     <div className="spriteComputer"><img className={`imageComputer${animationComputer === true && hpComputer > 0 ? ' attackMoveComputer' : ''}`} src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
                 </div>
-
-
-
                 <div className='perso'>
                     <div className="spritePerso"><img className={`imagePerso${animation === true && hpPerso > 0 ? ' attackMove' : ''}`} src={`http://www.pokestadium.com/sprites/xy/back/${dataPokemonPerso.name}.gif`} alt='back sprite' /></div>
                     <div className="infosPersoDiv">
@@ -537,7 +505,6 @@ const Fight = (props) => {
                     {hpComputer <= 0 || hpPerso <= 0 ? <Button style={{ display: 'flex', marginLeft: 'auto', marginRight: 'auto', alignSelf: 'center' }} color='danger' onClick={toggle}>Open Menu</Button> : ""}
                     <div ref={logEndRef} />
                 </div>
-
             </div>
             <div>
                 {hpComputer <= 0 ?
