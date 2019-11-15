@@ -27,13 +27,13 @@ const QuizData = [
     {
       id: 5,
       question: `When was Pokémon first released?`,
-      options: [`June 30 1990`, `Septembre 15 2000`, `March 1 1988`, `Febuary 27 1996`],
+      options: [`June 30 1996`, `Septembre 15 1998`, `March 1 1988`, `Febuary 27 1996`],
       answer: `Febuary 27 1996`
     },
     {
       id: 6,
       question: `Which is the first Pokémon games versions?`,
-      options: [`Red & Green`, `Silver & Gold`, `Ruby et Saphire`, `Diamond & Pearl`],
+      options: [`Ruby et Saphire`,`Silver & Gold`,  `Red & Green`, `Diamond & Pearl`],
       answer: `Red & Green`
     },
     {
