@@ -95,7 +95,7 @@ class Quiz extends React.Component {
               ))}
             </ul>
           </div>
-          <Link to='/'>
+          <Link to='/quiz'>
           <button >
             Back to Quiz Selection
           </button>

@@ -5,14 +5,11 @@
     text-transform: uppercase;
     font-family: 'Press Start 2P', cursive;
     margin-top: 20vh;
-
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-
-
 }
 
 .result{
@@ -24,11 +21,9 @@
   width: 120vh;
   height: auto;
   margin-bottom: 1vh !important;
-  font-size: 0.6em;
 }
 .containerh1span{
   margin-bottom: 10vh;
-
 }
 
 .quizp{
@@ -36,10 +31,7 @@
   width: 70vh;
   height: auto;
   font-size: 0.4em;
-  margin: auto;
-
-
-  
+  margin: auto;  
 }
 
 .quizspan{
@@ -49,10 +41,12 @@
   height: auto;
   margin-bottom: 20vh ;
   border: 2px solid black ;
+  font-size: 20px;
 }
 
 .quizbtn{
   margin-top: 5vh;
+  font-size: 20px;
 }
 
 .answer {
@@ -60,8 +54,7 @@
     height: auto;
     margin: 20px!important;
     background-color: white;
-    font-size: 0.4em;
-
+    Font-size: 20px;
 }
 
 .options {
@@ -70,11 +63,11 @@
     padding: 10px;
   }
   
-  .selected {
-    background: linear-gradient(to right, #74ebd5, #acb6e5) !important;
-  }
+.selected {
+  background: linear-gradient(to right, #74ebd5, #acb6e5) !important;
+}
   
-  ul {
-    list-style-type: none;
-  }
+ul {
+  list-style-type: none;
+}
   
