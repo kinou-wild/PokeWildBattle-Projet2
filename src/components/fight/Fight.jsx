@@ -562,8 +562,8 @@ const Fight = (props) => {
                             Onward to the next !
                     </ModalBody>
                         <ModalFooter>
-                            <Button onClick={nextFight} ><Link to={`/fight/${params.idperso}/${Math.floor(Math.random() * 151)}`}>Continue</Link></Button>
-                            <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}>Back to pokedex</Link></Button>
+                        <Link to={`/fight/${params.idperso}/${Math.floor(Math.random() * 151)}`}><Button onClick={nextFight} >Continue</Button></Link>
+                            <Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}><Button color="secondary" onClick={toggle}>Back to pokedex</Button> </Link>
                         </ModalFooter>
                     </Modal>
                     : ''}
@@ -575,7 +575,7 @@ const Fight = (props) => {
                             {lossDisplayer()}
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}>Back to pokedex</Link></Button>
+                            <Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}><Button color="secondary" onClick={toggle}>Back to pokedex</Button></Link>
                         </ModalFooter>
                     </Modal>
                     : ''}
