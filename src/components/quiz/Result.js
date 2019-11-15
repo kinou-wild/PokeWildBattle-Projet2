@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {CSSTransitionGroup} from "react-transition-group";
+import {Link} from 'react-router-dom'
 
 
 
@@ -24,6 +25,11 @@ function Result(props) {
                 props.quizResult === 'Racaillou' ? 'https://www.pokepedia.fr/images/b/b2/Racaillou-RFVF.png':
                 props.quizResult === 'Aquali' ? 'https://www.pokepedia.fr/images/thumb/6/6b/Aquali-RFVF.png/500px-Aquali-RFVF.png':
                 props.quizResult === 'Mewtwo' ? 'https://www.pokepedia.fr/images/thumb/d/db/Mewtwo-RFVF.png/500px-Mewtwo-RFVF.png' : 'https://www.pokepedia.fr/images/0/0c/Professeur_Chen-LGPE.png'}/>
+                <Link to='/pokedex' className='homepagepokedexbtn'>
+            <button className='backToPokedex'>
+                Back to Pokedex
+            </button>
+            </Link>
       </div>
     </CSSTransitionGroup>
   );

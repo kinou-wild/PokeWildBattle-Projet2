@@ -12,28 +12,13 @@ code {
     monospace, cursive;
 }
 
-
-
-/* * {
-  box-sizing: border-box; 
-  
-  
-  }
-  
-  body {
-  margin: 0;
-  padding: 0;
-  background: #eee;
-  }
-
-*/
   
   .container {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
   border-radius: 15px;
-  background: #6495ED80 ;
+  background: skyblue ;
   color:rgb(74, 117, 197);
   
   }

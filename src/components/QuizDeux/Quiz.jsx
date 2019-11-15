@@ -83,7 +83,7 @@ class Quiz extends React.Component {
           <div className='result'>
             <h3 className='quizh1 nes-container is-rounded'>Your Final score is {this.state.score} points </h3>
             <p className='quizp nes-container'>
-            The correct answer's for the questions were
+            The correct answers for the questions were
             </p>
           </div>
           <div>
