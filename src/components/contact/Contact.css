@@ -1,0 +1,49 @@
+.contact {
+    top:5vh;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 95vh;
+    margin-bottom: 100px;   
+  }
+
+.contactcontainer{
+  margin-left: 2%;
+}
+  
+  
+  /* Contact image */
+  .contact .avatar {
+    margin-right: 1em;
+    width: 40%;
+    height: auto;
+  }
+
+  .contactcard{
+    background-color: white;
+  }
+
+  i {
+
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  /* Name */
+  .contacth1{
+    color: black;
+    text-transform: uppercase;
+    font-family: 'Press Start 2P', cursive;
+	  font-size: 50px;
+  }
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 1000!important;
+}
+
+.buttonContact{
+ position: fixed;
+ bottom: 0;
+ left: 0;
+}

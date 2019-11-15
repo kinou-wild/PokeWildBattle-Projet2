@@ -4,15 +4,9 @@
 	background-color: rgba(255, 255, 255, 0.85);
 	flex-wrap: wrap;
 	animation-name: test;
-}
+	position: absolute;
+	bottom: -470px;
 
-@keyframes test{
-	0%{
-		margin-bottom: -200px;
-	}
-	100%{
-		margin-bottom: 200px;
-	}
 }
 
 .clickMe{
@@ -36,6 +30,11 @@ button{
 	font-family: 'Press Start 2P', cursive;
 	font-size: 13px;
 	border-radius: 3px;
+}
+.footerbutton{
+	position: fixed;
+	bottom: 0;
+	left:0;
 }
 
 hr {

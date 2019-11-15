@@ -1,0 +1,39 @@
+.homepagecontainer{
+    align-content: center;
+    align-items: center;
+    text-align: -webkit-center;
+    text-transform: uppercase;
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20vh;
+}
+
+.imghomepage{
+    width: auto;
+    height: 50%;
+}
+
+.imgcontainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.homepagebtn{
+    width: 50vh;
+    height: auto;
+    margin-top: 5vh;
+    border: 2px solid black !important;
+    background-color: white !important;
+}
+
+.homepagepokedexbtn{
+    justify-content: center;
+}
+
+.backToPokedex{
+    position: fixed;
+    bottom: 0;
+    left:0;
+}
