@@ -10,34 +10,35 @@ import Loading from './../Loading'
 
 
 
-const Fight = (props) => {
-    const [loading, setLoading] = useState(true)
-    const [wins, setWins]= useState(1)
 
+const Fight = (props) => {
+    // Boolean ruling the loading
+    const [loading, setLoading] = useState(true)
+    // Number of battles displayed
+    const [wins, setWins] = useState(1)
+    // Loading screen
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
         }, 3000)
 
     }, [])
-
     const {
         buttonLabel,
         className
     } = props;
-
+    // Boolean ruling whether the modal window allowing you to choose what to do at the end of the fight is opened or not.
     const [modal, setModal] = useState(true);
-
+    // Function opening and closing said modal
     const toggle = () => setModal(!modal);
 
 
 
     const params = props.match.params;
-    console.log('params are ' +params)
 
 
 
-
+    // Hook used to stock the API data linked to the picked pokemon
     const [dataPokemonPerso, setDataPokemonPerso] = useState({
         stats: [{}],
         sprites: [],
@@ -46,7 +47,7 @@ const Fight = (props) => {
         }],
         name: ' '
     });
-
+    // Hook used to stock the API data linked to the ennemy pokemon
     const [dataPokemonComputer, setDataPokemonComputer] = useState({
         stats: [],
         sprites: [],
@@ -56,21 +57,23 @@ const Fight = (props) => {
         name: ''
     });
 
-
+    // Is used to manage the attack buttons to make them unclickable during an action
     const [clickable, setClickable] = useState(true)
-
+    // Hooks used to store the evolution of the health and the informations of the battle linked to the opposing computer
     const [hpComputer, setHpComputer] = useState()
     const [hpComputerPercent, setHpComputerPercent] = useState(100)
     const [animationComputer, setAnimationComputer] = useState(false)
     const [logHPComputer, setLogHPComputer] = useState([])
     const [logComputer, setLogComputer] = useState([])
 
-
+    // Hooks used to store the evolution of the health and the informations of the battle linked to the player
     const [hpPerso, setHpPerso] = useState()
     const [hpPersoPercent, setHpPersoPercent] = useState(100)
     const [animation, setAnimation] = useState(false)
     const [logHPPerso, setLogHPPerso] = useState([])
     const [logPerso, setLogPerso] = useState([])
+
+    const [logWin, setLogWin] = useState([])
 
     useEffect(() => {
         getPokemonPerso()
@@ -382,8 +385,6 @@ const Fight = (props) => {
     const randomEnnemyAttack = (dmg) => {
 
         if (hpComputer - dmg > 0 && hpPerso > 0) {
-            console.log('hp computer ' + hpComputer)
-            console.log('hp perso ' + hpPerso)
             const allEnnemyAttacks = [algoComputerAtt1, algoComputerAtt2, algoComputerAtt3, algoComputerAtt4]
             const randomNumber = Math.floor(Math.random() * 4)
             return (allEnnemyAttacks[randomNumber]())
@@ -425,9 +426,6 @@ const Fight = (props) => {
             setTimeout(() => { randomEnnemyAttack(attack4); setAnimationComputer(false); setAnimation(false); setClickable(true) }, 3000)
         }
     }
-    const handleAttack1 = event => {
-        clickable ? turnPerTurn1() : event.preventDefault()
-    }
     const animationPersoC = () => {
         if (hpPerso >= 0 && hpComputer >= 0) {
             return setAnimation(true)
@@ -440,7 +438,23 @@ const Fight = (props) => {
         }
     }
     /////////// LOG ///////////
+    const logger = () => {
+       return logPerso.map((x, y) => {
+            return <>
+                <p>{capitalizeFirstLetter(dataPokemonPerso.name)} uses {x} ! It deals {logHPPerso[y]} damage.</p>
+                {logComputer[y - (wins - 1)] ? <p>{capitalizeFirstLetter(dataPokemonComputer.name)} uses {logComputer[y - (wins - 1)]} ! It deals {logHPComputer[y - (wins - 1)]} damage.</p> : ''}
 
+            </>
+        })
+    }
+    const winLogger = () => {
+        return logWin.map(wins => {
+            return <p>{wins}</p>
+
+        }
+
+        )
+    }
     const logEndRef = useRef(null)
     const scrollToBottom = () => {
         if (logEndRef.current !== null) {
@@ -449,21 +463,31 @@ const Fight = (props) => {
     }
     useEffect(scrollToBottom, [logPerso, logComputer, hpComputer, hpPerso]);
     const DisplayLog = () => {
+        return (
+            <div>
+                {winLogger()}
+                {logger()}
+            </div>)
 
-        return logPerso.map((x, y) => {
-            return <>
-                <p>{capitalizeFirstLetter(dataPokemonPerso.name)} uses {x} ! It deals {logHPPerso[y]} damage.</p>
-                {logComputer[y-(wins-1)] ? <p>{capitalizeFirstLetter(dataPokemonComputer.name)} uses {logComputer[y-(wins-1)]} ! It deals {logHPComputer[y-(wins-1)]} damage.</p> : ''}
-
-            </>
-        })
     }
     const nextFight = () => {
-        setWins(wins+1)
+        setLogWin([...logWin, `You won game ${wins} against ${dataPokemonComputer.name}.`])
+        setWins(wins + 1)
         setHpComputerPercent(100)
         setHpPersoPercent(100)
+        setLogPerso([])
+        setLogHPPerso([])
+        setLogComputer([])
+        setLogHPComputer([])
+
     }
 
+    const lossDisplayer = () => {
+        if (wins === 2) {
+            return `You fell after one victory.`
+        }
+        if (wins > 2) { return `You fell after ${wins - 1} victories.` }
+    }
     /////////////////////////
     if (loading) {
         return <Loading />
@@ -512,22 +536,22 @@ const Fight = (props) => {
                     <br></br>
                     {hpComputer <= 0 ? <p>You won as {dataPokemonPerso.name}.</p> : ""}
                     {hpPerso <= 0 ? <p>You lost as {dataPokemonPerso.name}.</p> : ""}
-                   {hpComputer <=0 || hpPerso<=0?<Button style={{display:'flex', marginLeft:'auto', marginRight:'auto', alignSelf:'center'}} color='danger' onClick={toggle}>Open Menu</Button>:""}
+                    {hpComputer <= 0 || hpPerso <= 0 ? <Button style={{ display: 'flex', marginLeft: 'auto', marginRight: 'auto', alignSelf: 'center' }} color='danger' onClick={toggle}>Open Menu</Button> : ""}
                     <div ref={logEndRef} />
                 </div>
 
             </div>
             <div>
                 {hpComputer <= 0 ?
-                    <Modal style={{marginTop:'30%', bottom:'170px'}} isOpen={modal} toggle={toggle} className={className}>
+                    <Modal style={{ marginTop: '30%', bottom: '170px' }} isOpen={modal} toggle={toggle} className={className}>
                         <ModalBody style={{ textAlign: 'center' }}>
                             YOU WIN !
-                            <br/>
+                            <br />
                             You won {wins} consecutive battles.
                             Onward to the next !
                     </ModalBody>
                         <ModalFooter>
-                            <Button onClick={nextFight} ><Link to={`/fight/${params.idperso}/${Math.floor(Math.random()*151)}`}>Continue</Link></Button>
+                            <Button onClick={nextFight} ><Link to={`/fight/${params.idperso}/${Math.floor(Math.random() * 151)}`}>Continue</Link></Button>
                             <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}>Back to pokedex</Link></Button>
                         </ModalFooter>
                     </Modal>
@@ -535,8 +559,10 @@ const Fight = (props) => {
                 {hpPerso <= 0 ?
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalBody style={{ textAlign: 'center' }}>
-                            YOU LOOSE !
-                    </ModalBody>
+                            YOU LOSE !
+                            <br />
+                            {lossDisplayer()}
+                        </ModalBody>
                         <ModalFooter>
                             <Button color="secondary" onClick={toggle}><Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}>Back to pokedex</Link></Button>
                         </ModalFooter>
