@@ -1,0 +1,11 @@
+.accueil{
+    position: absolute;
+    bottom: 5%;
+    left:39%;
+    padding: 10%;
+    height: 30%;
+}
+
+.music-home {
+    display:none;
+}
