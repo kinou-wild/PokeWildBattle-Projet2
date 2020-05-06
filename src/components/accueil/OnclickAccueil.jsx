@@ -10,7 +10,7 @@ const OnclickAccueil = () => {
         <>
             <Link className='accueil' to={'/pokedex'}></Link>
             <ReactPlayer className="music-home" url="https://www.youtube.com/embed/iOCMgLKIPmQ" playing
-            controls
+            controls volume = "0.80"
                 config={{
                     file: {
                         attributes: {

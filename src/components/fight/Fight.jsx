@@ -101,6 +101,9 @@ const Fight = (props) => {
             })
     }
 
+    console.log(dataPokemonPerso);
+    console.log(dataPokemonComputer);
+
     const capitalizeFirstLetter = string => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -440,7 +443,7 @@ const Fight = (props) => {
     }
     /////////// LOG ///////////
     const logger = () => {
-       return logPerso.map((x, y) => {
+        return logPerso.map((x, y) => {
             return <>
                 <p>{capitalizeFirstLetter(dataPokemonPerso.name)} uses {x} ! It deals {logHPPerso[y]} damage.</p>
                 {logComputer[y - (wins - 1)] ? <p>{capitalizeFirstLetter(dataPokemonComputer.name)} uses {logComputer[y - (wins - 1)]} ! It deals {logHPComputer[y - (wins - 1)]} damage.</p> : ''}
@@ -495,17 +498,7 @@ const Fight = (props) => {
     }
     return (
         <div className='fightPlace'>
-            <ReactPlayer className="music-fight" url="https://www.youtube.com/embed/GKzzANNFu_Q" playing
-            controls
-                config={{
-                    file: {
-                        attributes: {
-                            autoPlay: true,
-                            
-                        }
-                    }
-                }}
-            />
+
             {console.log(hpComputer)}
             <div className='divFight'>
                 <div className='computer'>
@@ -516,13 +509,13 @@ const Fight = (props) => {
                             <div className="currentHPComputer">{hpComputer >= 0 ? hpComputer : 0} / {pokemonComputerArrayStats[0][5]}</div>
                         </div>
                     </div>
-                    <div className="spriteComputer"><img className={`imageComputer${animationComputer === true && hpComputer > 0 ? ' attackMoveComputer' : ''}`} src={`http://www.pokestadium.com/sprites/xy/${dataPokemonComputer.name}.gif`} alt='front sprite' /></div>
+                    <div className="spriteComputer"><img className={`imageComputer${animationComputer === true && hpComputer > 0 ? ' attackMoveComputer' : ''}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${params.idcomputer}.png`} alt='front sprite' /></div>
                 </div>
 
 
 
                 <div className='perso'>
-                    <div className="spritePerso"><img className={`imagePerso${animation === true && hpPerso > 0 ? ' attackMove' : ''}`} src={`http://www.pokestadium.com/sprites/xy/back/${dataPokemonPerso.name}.gif`} alt='back sprite' /></div>
+                    <div className="spritePerso"><img className={`imagePerso${animation === true && hpPerso > 0 ? ' attackMove' : ''}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${params.idperso}.png`} alt='back sprite' /></div>
                     <div className="infosPersoDiv">
                         <div className="infosPerso">
                             <div className="namePerso"><p>{capitalizeFirstLetter(dataPokemonPerso.name)}</p></div>
@@ -549,6 +542,17 @@ const Fight = (props) => {
                     {hpPerso <= 0 ? <p>You lost as {dataPokemonPerso.name}.</p> : ""}
                     {hpComputer <= 0 || hpPerso <= 0 ? <Button style={{ display: 'flex', marginLeft: 'auto', marginRight: 'auto', alignSelf: 'center' }} color='danger' onClick={toggle}>Open Menu</Button> : ""}
                     <div ref={logEndRef} />
+                    <ReactPlayer className="music-fight" url="https://www.youtube.com/embed/GKzzANNFu_Q" playing
+                        controls
+                        config={{
+                            file: {
+                                attributes: {
+                                    autoPlay: true,
+
+                                }
+                            }
+                        }}
+                    />
                 </div>
 
             </div>
@@ -562,7 +566,7 @@ const Fight = (props) => {
                             Onward to the next !
                     </ModalBody>
                         <ModalFooter>
-                        <Link to={`/fight/${params.idperso}/${Math.floor(Math.random() * 151)}`}><Button onClick={nextFight} >Continue</Button></Link>
+                            <Link to={`/fight/${params.idperso}/${Math.floor(Math.random() * 151)}`}><Button onClick={nextFight} >Continue</Button></Link>
                             <Link to={`/pokedex`} style={{ textDecoration: 'none', color: 'black' }}><Button color="secondary" onClick={toggle}>Back to pokedex</Button> </Link>
                         </ModalFooter>
                     </Modal>

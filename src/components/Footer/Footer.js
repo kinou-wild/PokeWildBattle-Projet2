@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Footer.css'
 import { Link } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 
 
 
@@ -23,6 +24,16 @@ class Footer extends Component {
           Want more ?
         </button>
         </Link>
+        <ReactPlayer className="music-pokedex" url="https://www.youtube.com/embed/5NmjzE-zmlk" playing controls
+                config={{
+                    file: {
+                        attributes: {
+                            autoPlay: true,
+                            
+                        }
+                    }
+                }}
+            />
       </div>
     );
   }

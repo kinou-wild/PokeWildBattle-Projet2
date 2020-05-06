@@ -90,7 +90,6 @@ class PokeList extends React.Component {
                     keyC={random} />
 
             <div>
-                <Footer />
             </div>
             </div>
             

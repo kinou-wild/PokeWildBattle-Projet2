@@ -103,8 +103,8 @@
 }
 
 .imageComputer {
-    width: 20%;
-    height: 40%;
+    width: 25%;
+    height: 50%;
     align-self: center;
 }
 
@@ -130,8 +130,8 @@
 }
 
 .imagePerso {
-    width: 25%;
-    height: 55%;
+    width: 30%;
+    height: 65%;
     align-self: center;
 }
 
@@ -205,9 +205,11 @@
     bottom: 0;
     background-color: whitesmoke;    
     overflow-y: scroll;
+    display: flex;
+    justify-content: space-between;
 }
 
 .music-fight {
-    width: 0px !important;
-    height: 0px !important;
+    width: 10vw !important;
+    height: 19vh !important;
 }
